@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import {SafeAreaView, StyleSheet, TextInput} from 'react-native';
-
 
 import Model from './model/Model.js';
 import { redrawCanvas } from './boundary/Boundary.js'
@@ -13,7 +11,7 @@ function App() {
 
   const appRef = React.useRef(null);      // later need to be able to refer to App 
   const canvasRef = React.useRef(null);   // later need to be able to refer to Canvas
-
+  
   /** Ensures initial rendering is performed, and that whenever model changes, it is re-rendered. */
   React.useEffect(() => {
 
@@ -39,15 +37,9 @@ function App() {
       <button className='listShows' data-testid="listShows" onClick={(e) => testFunction()} >List Shows</button>
       <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => testFunction()} >Delete Venue</button>
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => testFunction()} >Delete Show</button>
-
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-        />
     </div>
   );
-}
+} 
 
 export default App;
 
