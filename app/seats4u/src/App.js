@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import {SafeAreaView, StyleSheet, TextInput} from 'react-native';
+
 
 import Model from './model/Model.js';
 import { redrawCanvas } from './boundary/Boundary.js'
@@ -33,10 +35,16 @@ function App() {
         height={600}
       />
 
-      <button className="upbutton" data-testid="upbutton" onClick={(e) => testFunction()}   >^</button>
-      <button className="downbutton" data-testid="downbutton" onClick={(e) => testFunction()}   >v</button>
-      <button className='rightbutton' data-testid="rightbutton" onClick={(e) => testFunction()} >&gt;</button>
-      <button className='leftbutton' data-testid="leftbutton" onClick={(e) => testFunction()} >&lt;</button>
+      <button className='createVenue' data-testid="createVenue" onClick={(e) => testFunction()} >Create Venue</button>
+      <button className='listShows' data-testid="listShows" onClick={(e) => testFunction()} >List Shows</button>
+      <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => testFunction()} >Delete Venue</button>
+      <button className='deleteShow' data-testid="deleteShow" onClick={(e) => testFunction()} >Delete Show</button>
+
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeText}
+          value={text}
+        />
     </div>
   );
 }
