@@ -16,9 +16,9 @@ exports.handler = async (event) => {
     console.log(event.token)
 
     // validates if that token already exists
-    let tokenExists = (token) => {
+    let tokenAndVenueExists = (token, name) => {
         return new Promise((resolve, reject) => {
-            pool.query("SELECT * FROM Venues WHERE venueToken=?", [token], (error, rows) => {
+            pool.query("SELECT * FROM Venues WHERE venueToken=? && venueName=?", [token, name], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }
@@ -26,7 +26,7 @@ exports.handler = async (event) => {
                 if ((rows) && (rows.length >= 1)) {
                     return resolve(true);
                 } else {
-                    errorMessage = "Token does not exist"
+                    errorMessage = "Token or venue name does not exist"
                     return resolve(false);
                 }
             });
@@ -50,10 +50,11 @@ exports.handler = async (event) => {
             });
         });
     };
+    
 
     let response = undefined;
-    const validToken = await tokenExists(event.token);
-    const alreadyExists = await showExists(event.showName, event.date, event.time);
+    const validToken = await tokenAndVenueExists(event.venueToken, event.venueName);
+    const alreadyExists = await showExists(event.showName, event.showDate, event.showTime);
     console.log("checking")
     
     // If the show doesn't exist and the token is valid, add the show to the database
@@ -76,16 +77,15 @@ exports.handler = async (event) => {
         }
 
         // Execute the show creation function
-        let venueCreationResult = await createShow(event.showName, event.date, event.time, event.price, event.venueName)
+        let venueCreationResult = await createShow(event.showName, event.showDate, event.showTime, event.defaultPrice, event.venueName)
         response = {
-            statusCode: 200,
-            created: true
+            statusCode: 200
         }
     } else {
         // If the show already exists or the token is invalid, return an error response
         response = {
             statusCode: 400,
-            error: errorMessage
+            error: JSON.stringify(errorMessage)
         };
     }
 

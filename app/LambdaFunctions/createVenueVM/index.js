@@ -95,7 +95,7 @@ exports.handler = async (event) => {
         };
 
         // Creates sections for the venue
-        let createSections = (rows, columns, region, venueName) => {
+        let createSections = ( region, venueName, rows, columns) => {
             return new Promise((resolve, reject) => {
                 pool.query("INSERT into Sections(region, venueName, rowNum, colNum) VALUES(?,?,?,?);", [region, venueName, rows, columns], (error, rows) => {
                     if (error) {
@@ -111,20 +111,20 @@ exports.handler = async (event) => {
         };
 
         // Execute venue creation and section creation functions
-        let venueCreationResult = await createVenue(token, event.name, event.location);
-        await createSections("left", event.name, event.rows, event.leftColumns);
-        await createSections("center", event.name, event.rows, event.centerColumns);
-        await createSections("right", event.name, event.rows, event.rightColumns);
+        let venueCreationResult = await createVenue(token, event.venueName, event.location);
+        await createSections("left", event.venueName, event.rowNum, event.leftColumns);
+        await createSections("center", event.venueName, event.rowNum, event.centerColumns);
+        await createSections("right", event.venueName, event.rowNum, event.rightColumns);
 
         response = {
             statusCode: 200,
-            token: token
+            token: JSON.stringify(token)
         };
     } else {
         // If the venue name already exists, return an error response
         response = {
             statusCode: 400,
-            error: errorMessage
+            error: JSON.stringify(errorMessage)
         };
     }
 
