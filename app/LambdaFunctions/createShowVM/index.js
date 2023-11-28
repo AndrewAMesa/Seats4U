@@ -15,7 +15,7 @@ exports.handler = async (event) => {
 
     console.log(event.token)
 
-    // validates if that venue name already exists
+    // validates if that token already exists
     let tokenExists = (token) => {
         return new Promise((resolve, reject) => {
             pool.query("SELECT * FROM Venues WHERE venueToken=?", [token], (error, rows) => {
@@ -55,6 +55,8 @@ exports.handler = async (event) => {
     const validToken = await tokenExists(event.token);
     const alreadyExists = await showExists(event.showName, event.date, event.time);
     console.log("checking")
+    
+    // If the show doesn't exist and the token is valid, add the show to the database
     if (!alreadyExists && validToken) {
 
         // adds show to database
@@ -73,12 +75,14 @@ exports.handler = async (event) => {
             });
         }
 
+        // Execute the show creation function
         let venueCreationResult = await createShow(event.showName, event.date, event.time, event.price, event.venueName)
         response = {
             statusCode: 200,
             created: false
         }
     } else {
+        // If the show already exists or the token is invalid, return an error response
         response = {
             statusCode: 400,
             error: errorMessage
