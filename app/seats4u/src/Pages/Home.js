@@ -4,7 +4,6 @@ import { createVenueVMCon } from './controller/CreateVenueVMCon';
 var token;
 var venueName;
 var location;
-var defaultPrice;
 var numRows;
 var leftCols;
 var centerCols;
@@ -21,7 +20,6 @@ const Home = () => {
       <input id='token' value={token} placeholder='token' />
       <input id='venueName' value={venueName} placeholder='venue name' />
       <input id='location' value={location} placeholder='location' />
-      <input id='defaultPrice' value={defaultPrice} placeholder='default price' />
       <input id='numRows' value={numRows} placeholder='#rows' />
       <input id='leftCols' value={leftCols} placeholder='#left columns' />
       <input id='centerCols' value={centerCols} placeholder='#center columns' />
@@ -32,14 +30,12 @@ const Home = () => {
 };
 
 function createVenue() {
-  if (document.getElementById('location').value != "" &&
-    document.getElementById('defaultPrice').value != "" && document.getElementById('numRows').value != "" &&
+  if (document.getElementById('location').value != "" && document.getElementById('numRows').value != "" &&
     document.getElementById('leftCols').value != "" && document.getElementById('centerCols').value != "" &&
     document.getElementById('rightCols').value != "" && document.getElementById('venueName').value != "") {
 
     console.log("venue name: " + document.getElementById('venueName').value);
     console.log("location: " + document.getElementById('location').value);
-    console.log("default price: " + document.getElementById('defaultPrice').value);
     console.log("numRows: " + document.getElementById('numRows').value);
     console.log("leftCols: " + document.getElementById('leftCols').value);
     console.log("centerCols: " + document.getElementById('centerCols').value);
