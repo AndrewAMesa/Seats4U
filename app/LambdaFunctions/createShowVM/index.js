@@ -79,7 +79,7 @@ exports.handler = async (event) => {
         let venueCreationResult = await createShow(event.showName, event.date, event.time, event.price, event.venueName)
         response = {
             statusCode: 200,
-            created: false
+            created: true
         }
     } else {
         // If the show already exists or the token is invalid, return an error response
