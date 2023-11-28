@@ -2,6 +2,11 @@ import React from 'react';
 import './App.css';
 import Model from './model/Model.js';
 import { redrawCanvas } from './boundary/Boundary.js'
+import { Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home';
+import Venues from './Pages/Venues';
+import Shows from './Pages/Shows'
+import EditBlocks from './Pages/EditBlocks'
 
 function App() {
   const [model, setModel] = React.useState(new Model(0));  // only place where Model object is instantiated.
@@ -36,8 +41,16 @@ function App() {
       <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>
       <button className='listShows' data-testid="listShows" onClick={(e) => listShows()} >List Shows</button>
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
-      <input onChange={change} value={token} placeholder='type pp here' />
+      <input onChange={change} value={token} placeholder='type token here' />
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Venues" element={<Venues />} />
+        <Route path="/Shows" element={<Shows />} />
+        <Route path="/EditBlocks" element={<EditBlocks />} />
+      </Routes>
     </div>
+
   );
 }
 
