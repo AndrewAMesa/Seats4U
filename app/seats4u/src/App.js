@@ -1,25 +1,23 @@
 import React from 'react';
 import './App.css';
-import Model from './model/Model.js';
 import { redrawCanvas } from './boundary/Boundary.js'
 
 function App() {
-  const [model, setModel] = React.useState(new Model(0));  // only place where Model object is instantiated.
   const [redraw, forceRedraw] = React.useState(0);    // change values to force redraw
   const appRef = React.useRef(null);      // later need to be able to refer to App 
   const canvasRef = React.useRef(null);   // later need to be able to refer to Canvas
   const [token, setVal] = React.useState();
 
+  // this function requests the redraw, and can be passed as an argument to other functions
+  const requestRedraw = () => {
+    forceRedraw(redraw+1)
+  }
+
+  
   const change = event => {
     const newvalue = event.target.value
     setVal(event.target.value)
   }
-
-  /** Ensures initial rendering is performed, and that whenever model changes, it is re-rendered. */
-  React.useEffect(() => {
-
-    redrawCanvas(model, canvasRef.current, appRef.current);
-  }, [model, redraw])   // this second argument is CRITICAL, since it declares when to refresh (whenever Model changes)
 
 
   return (
