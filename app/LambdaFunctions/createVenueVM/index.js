@@ -111,7 +111,7 @@ exports.handler = async (event) => {
         };
 
         // Execute venue creation and section creation functions
-        let venueCreationResult = await createVenue(token, event.name, event.locations);
+        let venueCreationResult = await createVenue(token, event.name, event.location);
         await createSections("left", event.name, event.rows, event.leftColumns);
         await createSections("center", event.name, event.rows, event.centerColumns);
         await createSections("right", event.name, event.rows, event.rightColumns);
