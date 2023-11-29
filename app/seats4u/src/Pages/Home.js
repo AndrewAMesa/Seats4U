@@ -1,5 +1,7 @@
 import React from 'react';
 import { createVenueVMCon } from './controller/CreateVenueVMCon';
+import { deleteVenueVMCon } from './controller/DeleteVenueVMCon';
+
 
 var token;
 var venueName;
@@ -61,9 +63,25 @@ function createVenue() {
 }
 
 function deleteVenue() {
+  if (document.getElementById('token').value != ""){
+    console.log("token: " + document.getElementById('token').value);
+    //run controller for VenueVMCon
+    deleteVenueVMCon();
+  }
+  else {
+    console.log("error: missing token");
+  }
 }
 
 function listVenues() {
+  if (document.getElementById('token').value != ""){
+    console.log("token: " + document.getElementById('token').value);
+    //run controller for VenueVMCon
+    listVenuesVMCon();
+  }
+  else {
+    console.log("error: missing token");
+  }
 }
 
 

@@ -18,7 +18,7 @@ exports.handler = async (event) => {
     // validates if that token already exists
     let tokenExists = (token) => {
         return new Promise((resolve, reject) => {
-            pool.query("SELECT * FROM Venues WHERE venueToken=?", [token], (error, rows) => {
+            pool.query("SELECT * FROM Admins WHERE adminToken=?", [token], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }

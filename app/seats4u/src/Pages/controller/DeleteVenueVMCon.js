@@ -1,6 +1,6 @@
 import { post } from "./Api"
 
-export function deleteVenueVMCon(requestRedraw) {
+export function deleteVenueVMCon() {
     // potentially modify the model
     let venueToken = document.getElementById("token");
 
