@@ -8,6 +8,15 @@ var numRows;
 var leftCols;
 var centerCols;
 var rightCols;
+import { createVenueVMCon } from './controller/CreateVenueVMCon';
+
+var token;
+var venueName;
+var location;
+var numRows;
+var leftCols;
+var centerCols;
+var rightCols;
 
 const Home = () => {
   return (
@@ -31,7 +40,10 @@ const Home = () => {
       <input id='centerCols' value={centerCols} placeholder='#center columns' />
       <li type="none"></li>
       <input id='rightCols' value={rightCols} placeholder='#right columns' />
-    </div >
+      result: <input id="result" readOnly style={{ width: '600px' }}/>
+      </div >
+
+
   );
 };
 
@@ -54,9 +66,6 @@ function createVenue() {
   else {
     console.log("error: missing info");
   }
-}
-
-function listVenues() {
 }
 
 function deleteVenue() {

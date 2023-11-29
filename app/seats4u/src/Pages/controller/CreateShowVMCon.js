@@ -25,9 +25,12 @@ export function createShowVMCon() {
     const handler = (response) => {
         // Logging the parsed response status code to the console
         if (JSON.parse(response.statusCode) == "200") {
-            console.log(JSON.parse(response.statusCode));
+            document.getElementById("result").value = "Show created!   Show Name:" + showName.value + 
+            "   Date: " + showDate.value + 
+            "   Time: " + showTime.value +
+            "   Default Price: " + defaultPrice.value;
         } else {
-            document.getElementById("token").value = JSON.parse(response.error);
+            document.getElementById("result").value = JSON.parse(response.error);
         }
     };
 
