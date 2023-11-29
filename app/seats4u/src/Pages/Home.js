@@ -8,6 +8,15 @@ var numRows;
 var leftCols;
 var centerCols;
 var rightCols;
+import { createVenueVMCon } from './controller/CreateVenueVMCon';
+
+var token;
+var venueName;
+var location;
+var numRows;
+var leftCols;
+var centerCols;
+var rightCols;
 
 const Home = () => {
 
@@ -31,6 +40,26 @@ const Home = () => {
 };
 
 function createVenue() {
+  if (document.getElementById('location').value != "" && document.getElementById('numRows').value != "" &&
+    document.getElementById('leftCols').value != "" && document.getElementById('centerCols').value != "" &&
+    document.getElementById('rightCols').value != "" && document.getElementById('venueName').value != "") {
+
+    console.log("venue name: " + document.getElementById('venueName').value);
+    console.log("location: " + document.getElementById('location').value);
+    console.log("numRows: " + document.getElementById('numRows').value);
+    console.log("leftCols: " + document.getElementById('leftCols').value);
+    console.log("centerCols: " + document.getElementById('centerCols').value);
+    console.log("rightCols: " + document.getElementById('rightCols').value);
+
+    //run controller for VenueVMCon
+    createVenueVMCon();
+
+  }
+  else {
+    console.log("error");
+  }
+
+
   if (document.getElementById('location').value != "" && document.getElementById('numRows').value != "" &&
     document.getElementById('leftCols').value != "" && document.getElementById('centerCols').value != "" &&
     document.getElementById('rightCols').value != "" && document.getElementById('venueName').value != "") {
