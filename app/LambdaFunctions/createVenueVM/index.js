@@ -10,7 +10,7 @@ exports.handler = async (event) => {
         database: db_access.config.database
     });
 
-    let errorMessage = "";
+    let errorMessage = "error";
 
     console.log(event.name);
 
@@ -33,7 +33,7 @@ exports.handler = async (event) => {
     };
 
     let response = undefined;
-    const alreadyExists = await venueNameExists(event.name);
+    const alreadyExists = await venueNameExists(event.venueName);
     console.log("checking");
 
     if (!alreadyExists) {
@@ -118,7 +118,7 @@ exports.handler = async (event) => {
 
         response = {
             statusCode: 200,
-            token: JSON.stringify(token)
+            token: JSON.stringify(token),
         };
     } else {
         // If the venue name already exists, return an error response
