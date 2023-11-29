@@ -8,15 +8,6 @@ var numRows;
 var leftCols;
 var centerCols;
 var rightCols;
-import { createVenueVMCon } from './controller/CreateVenueVMCon';
-
-var token;
-var venueName;
-var location;
-var numRows;
-var leftCols;
-var centerCols;
-var rightCols;
 
 const Home = () => {
   return (
@@ -40,8 +31,9 @@ const Home = () => {
       <input id='centerCols' value={centerCols} placeholder='#center columns' />
       <li type="none"></li>
       <input id='rightCols' value={rightCols} placeholder='#right columns' />
-      result: <input id="result" readOnly style={{ width: '600px' }}/>
-      </div >
+      <li type="none"></li>
+      result: <input id="result" readOnly style={{ width: '600px' }} />
+    </div >
 
 
   );
@@ -70,5 +62,9 @@ function createVenue() {
 
 function deleteVenue() {
 }
+
+function listVenues() {
+}
+
 
 export default Home;
