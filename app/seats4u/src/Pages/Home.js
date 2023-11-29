@@ -1,7 +1,7 @@
 import React from 'react';
 import { createVenueVMCon } from './controller/CreateVenueVMCon';
 import { deleteVenueVMCon } from './controller/DeleteVenueVMCon';
-
+import { listVenueVMCon } from './controller/ListVenueVMCon';
 
 var token;
 var venueName;
@@ -34,7 +34,7 @@ const Home = () => {
       <li type="none"></li>
       <input id='rightCols' value={rightCols} placeholder='#right columns' />
       <li type="none"></li>
-      result: <input id="result" readOnly style={{ width: '600px' }} />
+      result: <input id="result" readOnly style={{ width: '1000px' }} />
     </div >
 
 
@@ -77,7 +77,7 @@ function listVenues() {
   if (document.getElementById('token').value != ""){
     console.log("token: " + document.getElementById('token').value);
     //run controller for VenueVMCon
-    listVenuesVMCon();
+    listVenueVMCon();
   }
   else {
     console.log("error: missing token");

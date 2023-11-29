@@ -10,12 +10,14 @@ export function deleteVenueVMCon() {
      // Callback function to handle the response from the server
      const handler = (response) => {
         // Logging the parsed response status code to the console
+        console.log()
         if (JSON.parse(response.statusCode) == "200") {
             console.log(JSON.parse(response.statusCode));
+            document.getElementById("result").value = "Venue deleted!";
         } else {
-            document.getElementById("token").value = JSON.parse(response.error);
+            document.getElementById("result").value = JSON.parse(response.error);
         }
     };
 
-    post('/DeleteVenue', data, handler)
+    post('/deleteVenueVM', data, handler)
 }

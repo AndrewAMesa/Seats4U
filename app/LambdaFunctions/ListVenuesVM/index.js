@@ -13,7 +13,7 @@ exports.handler = async (event) => {
 
     let errorMessage = "";
 
-    console.log(event.token)
+    console.log(event.adminToken)
 
     // validates if that token already exists
     let tokenExists = (token) => {
@@ -33,7 +33,7 @@ exports.handler = async (event) => {
         });
     };
 
-    const validToken = await tokenExists(event.token);
+    const validToken = await tokenExists(event.adminToken);
     console.log("checking")
     
     // If the token is valid delete venue from database
@@ -47,11 +47,11 @@ exports.handler = async (event) => {
             })
         }
         
-        const all_constants = await ListVenues()
+        const allVenues = await ListVenues()
         
         const response = {
           statusCode: 200,
-          constants: all_constants
+          venues: allVenues
         }
         
         pool.end()     // close DB connections      
