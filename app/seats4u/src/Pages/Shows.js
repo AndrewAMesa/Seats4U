@@ -16,16 +16,19 @@ const Shows = () => {
       <button className='listShows' data-testid="listShows" onClick={(e) => listShows()} >List Shows</button>
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
-
+      <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
+      <li type="none"></li>
       <input id='venueName' value={venueName} placeholder='venue name' />
+      <li type="none"></li>
       <input id='showName' value={showName} placeholder='show name' />
-      <input id='showDate' value={showDate} placeholder='show date' />
-      <input id='showTime' value={showTime} placeholder='show time' />
+      <li type="none"></li>
+      <input id='showDate' value={showDate} placeholder='show date (yyyy-mm-dd)' />
+      <li type="none"></li>
+      <input id='showTime' value={showTime} placeholder='show time (hh:mm:ss)' />
+      <li type="none"></li>
       <input id='defaultPrice' value={defaultPrice} placeholder='default price' />
-
     </div>
-
   );
 };
 
@@ -46,10 +49,8 @@ function createShow() {
 
   }
   else {
-    console.log("error");
+    console.log("error: missing info");
   }
-
-
 }
 
 function listShows() {

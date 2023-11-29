@@ -5,7 +5,8 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import Shows from './Pages/Shows'
 import EditBlocks from './Pages/EditBlocks'
-import NavBar from './Components/NavBar';
+import NavBar from './NavBar.js';
+import { Box } from '@mui/material';
 
 function App() {
   const [redraw, forceRedraw] = React.useState(0);    // change values to force redraw
@@ -18,22 +19,32 @@ function App() {
   }
 
   return (
+
     <div className="App" ref={appRef}>
       <canvas tabIndex="1"
         data-testid="canvas"
         className="App-canvas"
         ref={canvasRef}
-        width={700}
-        height={600}
+        width='100%'
+        height='930px'
       />
 
-      <NavBar />
+      <Box
+        sx={{
+          position: 'absolute',
+          width: '100%',
+          height: 35,
+          bgcolor: 'white'
+        }}
+      />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Shows" element={<Shows />} />
-        <Route path="/EditBlocks" element={<EditBlocks />} />
+        <Route path="/EditBlocks" element={<EditBlocks />} /> 
       </Routes>
 
+      <NavBar />
     </div>
   );
 }

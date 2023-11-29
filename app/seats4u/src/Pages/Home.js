@@ -10,22 +10,28 @@ var centerCols;
 var rightCols;
 
 const Home = () => {
-
   return (
     <div className="Home">
       <h1>Home</h1>
       <button className='createVenue' data-testid="createVenue" onClick={(e) => createVenue()} >Create Venue</button>
       <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>
+      <button className='listVenues' data-testid="listVenues" onClick={(e) => listVenues()} >List Venues</button>
 
+      <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
+      <li type="none"></li>
       <input id='venueName' value={venueName} placeholder='venue name' />
+      <li type="none"></li>
       <input id='location' value={location} placeholder='location' />
+      <li type="none"></li>
       <input id='numRows' value={numRows} placeholder='#rows' />
+      <li type="none"></li>
       <input id='leftCols' value={leftCols} placeholder='#left columns' />
+      <li type="none"></li>
       <input id='centerCols' value={centerCols} placeholder='#center columns' />
+      <li type="none"></li>
       <input id='rightCols' value={rightCols} placeholder='#right columns' />
-
-    </div>
+    </div >
   );
 };
 
@@ -46,10 +52,11 @@ function createVenue() {
 
   }
   else {
-    console.log("error");
+    console.log("error: missing info");
   }
+}
 
-
+function listVenues() {
 }
 
 function deleteVenue() {
