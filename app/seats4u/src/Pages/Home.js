@@ -24,6 +24,7 @@ const Home = () => {
       <input id='leftCols' value={leftCols} placeholder='#left columns' />
       <input id='centerCols' value={centerCols} placeholder='#center columns' />
       <input id='rightCols' value={rightCols} placeholder='#right columns' />
+      result: <input id="result" readOnly style={{ width: '600px' }}/>
 
     </div>
   );

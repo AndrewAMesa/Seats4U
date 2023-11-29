@@ -26,11 +26,14 @@ export function createVenueVMCon() {
         // Checking if the response status code is 200
         if (JSON.parse(response.statusCode) == "200") {
             // If successful, update the token input field with the received token
-            document.getElementById("token").value = JSON.parse(response.token);
+            console.log("1st")
+            document.getElementById("result").value = "Venue created!   Token:" + JSON.parse(response.token) + "   Venue Name: " + venueName.value;
+            
             console.log(JSON.parse(response.token)); // Logging the token to the console
         } else {
             // If there's an error, update the token input field with the error message
-            document.getElementById("token").value = JSON.parse(response.error);
+            console.log("2nd")
+            document.getElementById("result").value = JSON.parse(response.error);
         }
     };
 

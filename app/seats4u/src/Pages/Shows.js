@@ -23,6 +23,7 @@ const Shows = () => {
       <input id='showDate' value={showDate} placeholder='show date' />
       <input id='showTime' value={showTime} placeholder='show time' />
       <input id='defaultPrice' value={defaultPrice} placeholder='default price' />
+      result: <input id="result" readOnly style={{ width: '800px' }}/>
 
     </div>
 
