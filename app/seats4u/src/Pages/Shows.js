@@ -2,6 +2,7 @@ import React from 'react';
 import { createShowVMCon } from './controller/CreateShowVMCon';
 
 var token;
+var search;
 var venueName;
 var showName;
 var showDate;
@@ -14,8 +15,12 @@ const Shows = () => {
     <div className="Shows">
       <h1>Shows</h1>
       <button className='listShows' data-testid="listShows" onClick={(e) => listShows()} >List Shows</button>
+      {" "}
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
+      {" "}
       <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
+      {" | "} <input id='search' value={search} placeholder='Search Shows' />
+
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
       <li type="none"></li>

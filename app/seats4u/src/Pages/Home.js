@@ -16,7 +16,9 @@ const Home = () => {
     <div className="Home">
       <h1>Home</h1>
       <button className='createVenue' data-testid="createVenue" onClick={(e) => createVenue()} >Create Venue</button>
+      {" "}
       <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>
+      {" "}
       <button className='listVenues' data-testid="listVenues" onClick={(e) => listVenues()} >List Venues</button>
 
       <li type="none"></li>
