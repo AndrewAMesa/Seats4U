@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import { redrawCanvas } from './boundary/Boundary.js'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import Home from './Pages/Home';
 import Shows from './Pages/Shows'
 import EditBlocks from './Pages/EditBlocks'
 import NavBar from './NavBar.js';
 import { Box } from '@mui/material';
+
 
 function App() {
   const [redraw, forceRedraw] = React.useState(0);    // change values to force redraw
@@ -37,12 +38,15 @@ function App() {
           bgcolor: 'white'
         }}
       />
-      
-      <Routes>
+
+
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Shows" element={<Shows />} />
         <Route path="/EditBlocks" element={<EditBlocks />} /> 
-      </Routes>
+        </Routes>
+
+
 
       <NavBar />
     </div>
