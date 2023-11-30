@@ -5,14 +5,11 @@ const NavBar = () => {
    return (
       <div className="NavBar" >
          <li type="none">
-            <Link to="/">Home</Link>
+            <Link to="/HomeC">Consumer</Link>
             {" | "}
-            <Link to="Venues">Venues</Link>
+            <Link to="/HomeVM">Venue Manager</Link>
             {" | "}
-            <Link to="/Shows">Shows</Link>
-            {" | "}
-            <Link to="/EditBlocks">EditBlocks</Link>
-            {" | "}
+            <Link to="/HomeA">Admin</Link>
          </li>
       </div>
    );

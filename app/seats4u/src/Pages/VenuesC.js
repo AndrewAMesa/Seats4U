@@ -2,6 +2,7 @@ import React from 'react';
 import { createVenueVMCon } from './controller/CreateVenueVMCon';
 import { deleteVenueVMCon } from './controller/DeleteVenueVMCon';
 import { listVenueVMCon } from './controller/ListVenueVMCon';
+import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
 
 var token;
 var venueName;
@@ -11,15 +12,17 @@ var leftCols;
 var centerCols;
 var rightCols;
 
-const Venues = () => {
+const VenuesC = () => {
   return (
-    <div className="Venues">
+    <div className="VenuesC">
+      <ConsumerNavBar />
+
       <h1>Venues</h1>
       <button className='createVenue' data-testid="createVenue" onClick={(e) => createVenue()} >Create Venue</button>
       {" "}
       <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>
       {" "}
-      <button className='listVenues' data-testid="listVenues" onClick={(e) => listVenues()} >List Venues</button>
+      <button className='listVenuesC' data-testid="listVenuesC" onClick={(e) => listVenuesC()} >List VenuesC</button>
 
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
@@ -75,7 +78,7 @@ function deleteVenue() {
   }
 }
 
-function listVenues() {
+function listVenuesC() {
   if (document.getElementById('token').value != ""){
     console.log("token: " + document.getElementById('token').value);
     //run controller for VenueVMCon
@@ -87,4 +90,4 @@ function listVenues() {
 }
 
 
-export default Venues;
+export default VenuesC;

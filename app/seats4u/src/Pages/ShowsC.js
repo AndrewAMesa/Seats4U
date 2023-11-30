@@ -1,5 +1,6 @@
 import React from 'react';
 import { createShowVMCon } from './controller/CreateShowVMCon';
+import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
 
 var token;
 var search;
@@ -9,17 +10,19 @@ var showDate;
 var showTime;
 var defaultPrice;
 
-const Shows = () => {
+const ShowsC = () => {
 
   return (
-    <div className="Shows">
-      <h1>Shows</h1>
-      <button className='listShows' data-testid="listShows" onClick={(e) => listShows()} >List Shows</button>
+    <div className="ShowsC">
+      <ConsumerNavBar />
+
+      <h1>ShowsC</h1>
+      <button className='listShowsC' data-testid="listShowsC" onClick={(e) => listShowsC()} >List ShowsC</button>
       {" "}
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "}
       <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
-      {" | "} <input id='search' value={search} placeholder='Search Shows' />
+      {" | "} <input id='search' value={search} placeholder='Search ShowsC' />
 
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
@@ -34,7 +37,7 @@ const Shows = () => {
       <li type="none"></li>
       <input id='defaultPrice' value={defaultPrice} placeholder='default price' />
       <li type="none"></li>
-      result: <input id="result" readOnly style={{ width: '800px' }}/>
+      result: <input id="result" readOnly style={{ width: '800px' }} />
 
     </div>
   );
@@ -61,10 +64,10 @@ function createShow() {
   }
 }
 
-function listShows() {
+function listShowsC() {
 }
 
 function deleteShow() {
 }
 
-export default Shows;
+export default ShowsC;

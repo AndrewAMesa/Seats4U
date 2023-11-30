@@ -2,7 +2,7 @@
   background-color: rgb(245, 237, 164);
   display: flex;
 }
- 
+
 .NavBar {
   position: absolute;
   padding-top: 0px;
@@ -10,33 +10,107 @@
   font-size: 20px;
 }
 
-.Home {
+.ConsumerNavBar {
+  position: absolute;
+  padding-top: 35px;
+  font-size: 20px;
+}
+
+.VenueManagerNavBar {
+  position: absolute;
+  padding-top: 35px;
+  font-size: 20px;
+}
+
+.AdminNavBar {
+  position: absolute;
+  padding-top: 35px;
+  font-size: 20px;
+}
+
+.HomeC {
+  position: absolute;
+  padding-top: 0px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.HomeA {
   position: absolute;
   padding-top: 20px;
   padding-left: 10px;
   font-size: 20px;
 }
 
-.Venues {
+.HomeVM {
   position: absolute;
   padding-top: 20px;
   padding-left: 10px;
   font-size: 20px;
 }
 
-.Shows {
+.ShowsA {
   position: absolute;
   padding-top: 20px;
   padding-left: 10px;
   font-size: 20px;
 }
 
-.EditBlocks {
+.ShowsC {
   position: absolute;
   padding-top: 20px;
   padding-left: 10px;
   font-size: 20px;
-} 
+}
+
+.ShowsVM {
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.EditBlocksA {
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.EditBlocksC {
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.EditBlocksVM {
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.VenuesA {
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.VenuesC {
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.VenuesVM {
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
 
 /* .App-header {
   background-color: #282c34;
