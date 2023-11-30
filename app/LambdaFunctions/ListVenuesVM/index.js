@@ -28,6 +28,8 @@ exports.handler = async (event) => {
                 } else {
                     errorMessage = "Token does not exist"
                     return resolve(false);
+                    
+                 
                 }
             });
         });
@@ -37,10 +39,14 @@ exports.handler = async (event) => {
     console.log("checking")
     
     // If the token is valid delete venue from database
-    if (validToken) {
-        let ListVenues = () => {
-            return new Promise((resolve, reject) => {
-                pool.query("SELECT * FROM Venues", [], (error, rows) => {
+    if (validToken) 
+    {
+        let ListVenues = () => 
+        {
+            return new Promise((resolve, reject) => 
+            {
+                pool.query("SELECT venueName, venueToken FROM Venues", [], (error, rows) => 
+                {
                     if (error) { return reject(error); }
                     return resolve(rows);
                 })
@@ -50,15 +56,23 @@ exports.handler = async (event) => {
         const allVenues = await ListVenues()
         
         const response = {
-          statusCode: 200,
-          venues: allVenues
+            statusCode: 200,
+            venues: allVenues
         }
+         pool.end()
+         return response;
+         
+    } else 
+    {
+        const response = {
+            statusCode: 400,
+            error: JSON.stringify( "YOU HAVE TRIED TO GO WHERE ONLY THE HOLY ONE CAN. SHAME.")
+        }
+         pool.end() 
+         return response;
+              
         
-        pool.end()     // close DB connections      
-      
-        return response;
-      }
     }
-      
+    // close DB connections  
 
-   
+}
