@@ -3,6 +3,7 @@ import './App.css';
 import { redrawCanvas } from './boundary/Boundary.js'
 import { Routes, Route, HashRouter } from 'react-router-dom';
 import Home from './Pages/Home';
+import Venues from './Pages/Venues';
 import Shows from './Pages/Shows'
 import EditBlocks from './Pages/EditBlocks'
 import NavBar from './NavBar.js';
@@ -42,6 +43,7 @@ function App() {
 
         <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Venues" element={<Venues />} />
         <Route path="/Shows" element={<Shows />} />
         <Route path="/EditBlocks" element={<EditBlocks />} /> 
         </Routes>

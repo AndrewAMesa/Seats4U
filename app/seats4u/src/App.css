@@ -17,6 +17,13 @@
   font-size: 20px;
 }
 
+.Venues {
+  position: absolute;
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
 .Shows {
   position: absolute;
   padding-top: 20px;

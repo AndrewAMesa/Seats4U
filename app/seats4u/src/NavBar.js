@@ -7,6 +7,8 @@ const NavBar = () => {
          <li type="none">
             <Link to="/">Home</Link>
             {" | "}
+            <Link to="Venues">Venues</Link>
+            {" | "}
             <Link to="/Shows">Shows</Link>
             {" | "}
             <Link to="/EditBlocks">EditBlocks</Link>
