@@ -5,9 +5,7 @@ const HomeA = () => {
   return (
     <div className="HomeA">
       <AdminNavBar />
-      <h1>Home</h1>
-      Goodmorning Customer
-
+      Welcome to Admin!
     </div >
 
 

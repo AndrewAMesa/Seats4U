@@ -10,7 +10,6 @@ const ConsumerNavBar = () => {
             <Link to="/ShowsC">Shows</Link>
             {" | "}
             <Link to="/EditBlocksC">Edit Blocks</Link>
-            {" | "}
          </li>
       </div>
    );

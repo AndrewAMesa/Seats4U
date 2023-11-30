@@ -5,10 +5,7 @@ const HomeVM = () => {
   return (
     <div className="HomeVM">
       <VenueManagerNavBarNavBar />
-
-      <h1>Home</h1>
-      Goodmorning Customer
-
+      Welcome to Venue Manager!
     </div >
 
 

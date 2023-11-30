@@ -15,8 +15,6 @@ const ShowsVM = () => {
   return (
     <div className="ShowsVM">
       <VenueManagerNavBarNavBar />
-
-      <h1>Shows</h1>
       <button className='listShowsVM' data-testid="listShowsVM" onClick={(e) => listShowsVM()} >List ShowsVM</button>
       {" "}
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>

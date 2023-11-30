@@ -6,10 +6,7 @@ const HomeC = () => {
   return (
     <div className="HomeC">
       <ConsumerNavBar />
-
-      <h1>Home</h1>
-      Goodmorning Customer
-
+      Welcome to Consumer!
     </div >
 
   );

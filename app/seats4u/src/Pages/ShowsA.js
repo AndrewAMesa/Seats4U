@@ -15,7 +15,6 @@ const ShowsA = () => {
   return (
     <div className="ShowsA">
       <AdminNavBar />
-      <h1>Shows</h1>
       <button className='listShowsA' data-testid="listShowsA" onClick={(e) => listShowsA()} >List ShowsA</button>
       {" "}
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>

@@ -10,104 +10,86 @@
   font-size: 20px;
 }
 
-.ConsumerNavBar {
-  position: absolute;
-  padding-top: 35px;
-  font-size: 20px;
-}
-
-.VenueManagerNavBar {
-  position: absolute;
-  padding-top: 35px;
-  font-size: 20px;
-}
-
-.AdminNavBar {
-  position: absolute;
-  padding-top: 35px;
-  font-size: 20px;
-}
-
 .HomeC {
   position: absolute;
-  padding-top: 0px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .HomeA {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .HomeVM {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .ShowsA {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .ShowsC {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .ShowsVM {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .EditBlocksA {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .EditBlocksC {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .EditBlocksVM {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .VenuesA {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .VenuesC {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }
 
 .VenuesVM {
   position: absolute;
-  padding-top: 20px;
+  padding-top: 35px;
   padding-left: 10px;
   font-size: 20px;
 }

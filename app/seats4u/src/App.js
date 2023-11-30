@@ -15,9 +15,7 @@ import VenuesC from './Pages/VenuesC.js';
 import VenuesA from './Pages/VenuesA.js';
 import VenuesVM from './Pages/VenuesVM.js';
 import NavBar from './Pages/Components/NavBar.js';
-
 import { Box } from '@mui/material';
-
 
 function App() {
   const [redraw, forceRedraw] = React.useState(0);    // change values to force redraw
@@ -30,7 +28,6 @@ function App() {
   }
 
   return (
-
     <div className="App" ref={appRef}>
       <canvas tabIndex="1"
         data-testid="canvas"
@@ -49,33 +46,20 @@ function App() {
         }}
       />
 
-      {/* <Box
-        sx={{
-          paddingTop: 10,
-          position: 'absolute',
-          width: '100%',
-          height: 35,
-          bgcolor: 'orange'
-        }}
-      /> */}
-
-        <Routes>
-        <Route path="/HomeC" element={<HomeC/>} />
-        <Route path="/HomeVM" element={<HomeVM/>} />
-        <Route path="/HomeA" element={<HomeA/>} />
-        <Route path="/VenuesC" element={<VenuesC/>} />
-        <Route path="/VenuesVM" element={<VenuesVM/>} />
-        <Route path="/VenuesA" element={<VenuesA/>} />
-        <Route path="/ShowsC" element={<ShowsC/>} />
-        <Route path="/ShowsVM" element={<ShowsVM/>} />
-        <Route path="/ShowsA" element={<ShowsA/>} />
-        <Route path="/EditBlocksC" element={<EditBlockC/>} />
-        <Route path="/EditBlocksA" element={<EditBlockA/>} />
-        <Route path="/EditBlocksVM" element={<EditBlockVM/>} />
-
-       
-        </Routes>
-
+      <Routes>
+        <Route path="/HomeC" element={<HomeC />} />
+        <Route path="/HomeVM" element={<HomeVM />} />
+        <Route path="/HomeA" element={<HomeA />} />
+        <Route path="/VenuesC" element={<VenuesC />} />
+        <Route path="/VenuesVM" element={<VenuesVM />} />
+        <Route path="/VenuesA" element={<VenuesA />} />
+        <Route path="/ShowsC" element={<ShowsC />} />
+        <Route path="/ShowsVM" element={<ShowsVM />} />
+        <Route path="/ShowsA" element={<ShowsA />} />
+        <Route path="/EditBlocksC" element={<EditBlockC />} />
+        <Route path="/EditBlocksA" element={<EditBlockA />} />
+        <Route path="/EditBlocksVM" element={<EditBlockVM />} />
+      </Routes>
       <NavBar />
     </div>
   );

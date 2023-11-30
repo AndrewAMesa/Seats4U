@@ -8,7 +8,6 @@ const EditBlocksA = () => {
   return (
     <div className="EditBlocksA">
       <AdminNavBar />
-      <h1>Edit Blocks</h1>
     </div >
   );
 };

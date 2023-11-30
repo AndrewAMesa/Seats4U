@@ -8,8 +8,6 @@ const EditBlocksVM = () => {
   return (
     <div className="EditBlocksVM">
       <VenueManagerNavBarNavBar />
-
-      <h1>Edit Blocks</h1>
     </div >
   );
 };

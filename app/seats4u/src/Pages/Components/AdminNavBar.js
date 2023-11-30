@@ -10,7 +10,6 @@ const AdminNavBar = () => {
             <Link to="/ShowsA">Shows</Link>
             {" | "}
             <Link to="/EditBlocksA">Edit Blocks</Link>
-            {" | "}
          </li>
       </div>
    );

@@ -10,7 +10,6 @@ const VenueManagerNavBar = () => {
             <Link to="/ShowsVM">Shows</Link>
             {" | "}
             <Link to="/EditBlocksVM">Edit Blocks</Link>
-            {" | "}
          </li>
       </div>
    );

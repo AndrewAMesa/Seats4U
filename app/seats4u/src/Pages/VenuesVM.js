@@ -16,7 +16,6 @@ const VenuesVM = () => {
   return (
     <div className="VenuesVM">
       <VenueManagerNavBarNavBar/>
-      <h1>Venues</h1>
       <button className='createVenue' data-testid="createVenue" onClick={(e) => createVenue()} >Create Venue</button>
       {" "}
       <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>

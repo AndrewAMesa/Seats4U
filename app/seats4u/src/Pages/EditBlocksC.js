@@ -8,9 +8,6 @@ const EditBlocksC = () => {
   return (
     <div className="EditBlocksC">
       <ConsumerNavBar />
-
-
-      <h1>Edit Blocks</h1>
     </div >
   );
 };
