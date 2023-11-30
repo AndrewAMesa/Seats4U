@@ -11,7 +11,7 @@ exports.handler = async (event) => {
         database: db_access.config.database
     });
 
-    let errorMessage = "";
+    let errorMessage = "error";
 
     console.log(event.token)
 
@@ -78,8 +78,10 @@ exports.handler = async (event) => {
 
         // Execute the show creation function
         let venueCreationResult = await createShow(event.showName, event.showDate, event.showTime, event.defaultPrice, event.venueName)
-        response = {
-            statusCode: 200
+        if (venueCreationResult == true){
+            response = {
+                statusCode: 200
+            }
         }
     } else {
         // If the show already exists or the token is invalid, return an error response
