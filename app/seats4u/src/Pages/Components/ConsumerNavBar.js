@@ -5,11 +5,11 @@ const ConsumerNavBar = () => {
    return (
       <div className="ConsumerNavBar" >
          <li type="none">
-            <Link to="/VenuesC">Venues</Link>
-            {" | "}
+            {/* <Link to="/VenuesC">Venues</Link>
+            {" | "} */}
             <Link to="/ShowsC">Shows</Link>
-            {" | "}
-            <Link to="/EditBlocksC">Edit Blocks</Link>
+            {/* {" | "}
+            <Link to="/EditBlocksC">Edit Blocks</Link> */}
          </li>
       </div>
    );

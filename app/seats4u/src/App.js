@@ -16,6 +16,7 @@ import VenuesA from './Pages/VenuesA.js';
 import VenuesVM from './Pages/VenuesVM.js';
 import NavBar from './Pages/Components/NavBar.js';
 import { Box } from '@mui/material';
+import ConsumerNavBar from './Pages/Components/ConsumerNavBar.js';
 
 function App() {
   const [redraw, forceRedraw] = React.useState(0);    // change values to force redraw
@@ -61,6 +62,7 @@ function App() {
         <Route path="/EditBlocksVM" element={<EditBlockVM />} />
       </Routes>
       <NavBar />
+      <ConsumerNavBar />
     </div>
   );
 }
