@@ -20,7 +20,14 @@ const ShowsC = () => {
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "}
       <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
-      {" | "} <input id='search' value={search} placeholder='Search ShowsC' />
+      {" "}
+      <button className='listAllActiveShows' data-testid="listAllActiveShows" onClick={(e) => listAllActiveShows()} >List All Active Shows</button>
+      {" "}
+      <button className='showAvailableSeats' data-testid="showAvailableSeats" onClick={(e) => showAvailableSeats()} >Show Available Seats</button>
+      {" "}
+      <button className='purchaseSeats' data-testid="purchaseSeats" onClick={(e) => purchaseSeats()} >Purchase Seats</button>
+      {" "}
+      {" | "} <input id='search' value={search} placeholder='Search Shows' />
 
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
@@ -62,6 +69,16 @@ function createShow() {
   }
 }
 
+function listAllActiveShows() {
+
+}
+
+function purchaseSeats() {
+
+}
+function showAvailableSeats() {
+
+}
 function listShowsC() {
 }
 

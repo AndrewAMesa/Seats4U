@@ -20,8 +20,9 @@ const ShowsVM = () => {
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "}
       <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
+      {" "} <button className='activateShow' data-testid="activateShow" onClick={(e) => activateShow()} >Activate Show</button>
       {" | "} <input id='search' value={search} placeholder='Search ShowsVM' />
-
+      
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
       <li type="none"></li>
@@ -60,6 +61,10 @@ function createShow() {
   else {
     console.log("error: missing info");
   }
+}
+
+function activateShow(){
+
 }
 
 function listShowsVM() {

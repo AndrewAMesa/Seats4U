@@ -20,6 +20,8 @@ const ShowsA = () => {
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "}
       <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
+      {" "}
+      <button className='generateShowReport' data-testid="generateShowReport" onClick={(e) => generateShowReport()} >Generate Show Report</button>
       {" | "} <input id='search' value={search} placeholder='Search ShowsA' />
 
       <li type="none"></li>
@@ -60,6 +62,10 @@ function createShow() {
   else {
     console.log("error: missing info");
   }
+}
+
+function generateShowReport(){
+  
 }
 
 function listShowsA() {
