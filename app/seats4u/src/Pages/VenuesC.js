@@ -20,7 +20,7 @@ const VenuesC = () => {
       {" "}
       <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>
       {" "}
-      <button className='listVenuesC' data-testid="listVenuesC" onClick={(e) => listVenuesC()} >List VenuesC</button>
+      <button className='listVenuesC' data-testid="listVenuesC" onClick={(e) => listVenuesC()} >List Venues</button>
 
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />

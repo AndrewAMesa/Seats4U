@@ -15,7 +15,7 @@ const ShowsC = () => {
   return (
     <div className="ShowsC">
       <ConsumerNavBar />
-      <button className='listShowsC' data-testid="listShowsC" onClick={(e) => listShowsC()} >List ShowsC</button>
+      <button className='listShowsC' data-testid="listShowsC" onClick={(e) => listShowsC()} >List Shows</button>
       {" "}
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "}
