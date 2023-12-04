@@ -1,5 +1,7 @@
 import React from 'react';
 import { createShowVMCon } from './controller/CreateShowVMCon';
+import { deleteShowVMCon } from './controller/DeleteShowVMCon';
+
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
 
 var token;
@@ -9,6 +11,7 @@ var showName;
 var showDate;
 var showTime;
 var defaultPrice;
+var showID;
 
 const ShowsVM = () => {
 
@@ -25,6 +28,8 @@ const ShowsVM = () => {
       
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
+      <li type="none"></li>
+      <input id='showID' value={showID} placeholder='Show ID' />
       <li type="none"></li>
       <input id='venueName' value={venueName} placeholder='venue name' />
       <li type="none"></li>
@@ -71,6 +76,7 @@ function listShowsVM() {
 }
 
 function deleteShow() {
+  deleteShowVMCon();
 }
 
 export default ShowsVM;

@@ -3,13 +3,13 @@ import { createShowVMCon } from './controller/CreateShowVMCon';
 import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
 import { searchShowsCCon } from './controller/SearchShowsCCon';
 
-var token;
+// var token;
 var search;
-var venueName;
-var showName;
-var showDate;
-var showTime;
-var defaultPrice;
+// var venueName;
+// var showName;
+// var showDate;
+// var showTime;
+// var defaultPrice;
 
 const ShowsC = () => {
 
