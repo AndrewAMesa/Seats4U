@@ -15,7 +15,9 @@ const ShowsC = () => {
   return (
     <div className="ShowsC">
       <ConsumerNavBar />
-      <button className='listShowsC' data-testid="listShowsC" onClick={(e) => listShowsC()} >List Shows</button>
+      <button className='listShowsByVenue' data-testid="listShowsByVenue" onClick={(e) => listShowsByVenue()} >List Shows by Venue</button>
+      {" "}
+      <button className='listShowsByShow' data-testid="listShowsByShowC" onClick={(e) => listShowsByShow()} >List Shows by Show</button>
       {" "}
       {/* <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "} */}
@@ -79,7 +81,9 @@ function purchaseSeats() {
 function showAvailableSeats() {
 
 }
-function listShowsC() {
+function listShowsByShow() {
+}
+function listShowsByVenue() {
 }
 
 function deleteShow() {
