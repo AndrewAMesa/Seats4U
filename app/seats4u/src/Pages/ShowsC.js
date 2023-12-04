@@ -1,6 +1,7 @@
 import React from 'react';
 import { createShowVMCon } from './controller/CreateShowVMCon';
 import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
+import { searchShowsCCon } from './controller/SearchShowsCCon';
 
 // var token;
 var search;
@@ -15,9 +16,9 @@ const ShowsC = () => {
   return (
     <div className="ShowsC">
       <ConsumerNavBar />
-      <button className='listShowsByVenue' data-testid="listShowsByVenue" onClick={(e) => listShowsByVenue()} >List Shows by Venue</button>
+      <button className='listShowsByVenue' data-testid="listShowsByVenue" onClick={(e) => listShowsByVenue(0)} >List Shows by Venue</button>
       {" "}
-      <button className='listShowsByShow' data-testid="listShowsByShowC" onClick={(e) => listShowsByShow()} >List Shows by Show</button>
+      <button className='listShowsByShow' data-testid="listShowsByShowC" onClick={(e) => listShowsByShow(1)} >List Shows by Show</button>
       {" "}
       {/* <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "} */}
@@ -81,9 +82,11 @@ function purchaseSeats() {
 function showAvailableSeats() {
 
 }
-function listShowsByShow() {
+function listShowsByShow(type) {
+  searchShowsCCon(type)
 }
-function listShowsByVenue() {
+function listShowsByVenue(type) {
+  searchShowsCCon(type)
 }
 
 function deleteShow() {
