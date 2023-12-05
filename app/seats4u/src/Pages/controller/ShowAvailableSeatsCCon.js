@@ -1,11 +1,12 @@
 import { post } from "./Api"
 
-export function showAvailableSeatsCCon(requestRedraw) {
+export function showAvailableSeatsCCon(type) {
     // potentially modify the model
     let showID = document.getElementById("search");
 
      // prepare payload for the post
-    let data = {'showID': showID.value}
+    let data = {'showID': showID.value,
+                'type': type}
     console.log("test")
      // Callback function to handle the response from the server
      const handler = (response) => {
@@ -17,7 +18,7 @@ export function showAvailableSeatsCCon(requestRedraw) {
             console.log(JSON.parse(response.statusCode));
             let list = ''
             for (let i = 0; i < response.shows.length; i++){
-                list = list + "row" + response.shows[i].rowNum + ":" + "col" + response.shows[i].colNum +  ", ";
+                list = list + String.fromCharCode('A'.charCodeAt(0) + response.shows[i].rowNum) + response.shows[i].colNum +  ", ";
             }
             document.getElementById("result").value = list
         } else {
