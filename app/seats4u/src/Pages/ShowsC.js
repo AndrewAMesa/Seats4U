@@ -30,6 +30,7 @@ const ShowsC = () => {
       <button className='purchaseSeats' data-testid="purchaseSeats" onClick={(e) => purchaseSeats()} >Purchase Seats</button>
       {" "}
       {" | "} <input id='search' value={search} placeholder='Search Shows' />
+      {" | "} <input id='purchaseSeats' value={purchaseSeats} placeholder='Seats to purchase' />
       <li type="none"></li>
       Show available seats: {" "}
       <button className='showAvailableSeatsPrice' data-testid="showAvailableSeatsPrice" onClick={(e) => showAvailableSeatsPrice()} >Show Available Seats by Price</button>

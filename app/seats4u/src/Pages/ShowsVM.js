@@ -3,6 +3,7 @@ import { createShowVMCon } from './controller/CreateShowVMCon';
 import { deleteShowVMCon } from './controller/DeleteShowVMCon';
 
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
+import { activateShowCon } from './controller/ActivateShowVMCon.js';
 
 var token;
 var search;
@@ -25,7 +26,7 @@ const ShowsVM = () => {
       <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
       {" "} <button className='activateShow' data-testid="activateShow" onClick={(e) => activateShow()} >Activate Show</button>
       {" | "} <input id='search' value={search} placeholder='Search ShowsVM' />
-      
+
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
       <li type="none"></li>
@@ -68,8 +69,8 @@ function createShow() {
   }
 }
 
-function activateShow(){
-
+function activateShow() {
+  activateShowCon();
 }
 
 function listShowsVM() {
