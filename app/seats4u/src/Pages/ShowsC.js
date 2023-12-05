@@ -2,6 +2,7 @@ import React from 'react';
 import { createShowVMCon } from './controller/CreateShowVMCon';
 import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
 import { searchShowsCCon } from './controller/SearchShowsCCon';
+import { showAvailableSeatsCCon } from './controller/ShowAvailableSeatsCCon';
 
 // var token;
 var search;
@@ -80,7 +81,7 @@ function purchaseSeats() {
 
 }
 function showAvailableSeats() {
-
+  showAvailableSeatsCCon()
 }
 function listShowsByShow(type) {
   searchShowsCCon(type)
