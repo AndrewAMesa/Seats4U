@@ -16,10 +16,11 @@ exports.handler = async (event) => {
 
     let alreadyExists = undefined;
 
-    // Validates if that show already exists
+   
+    // Validates if that venue name already exists
     let showNameExists = (showID) => {
         return new Promise((resolve, reject) => {
-            // SQL query to check if the show ID exists
+            // SQL query to check if the venue name exists (partial match)
             pool.query("SELECT * FROM Shows WHERE showID=?", [showID], (error, rows) => {
                 if (error) {
                     return reject(error);
@@ -35,33 +36,42 @@ exports.handler = async (event) => {
         });
     };
     alreadyExists = await showNameExists(event.showID);
+    
 
     let response = undefined;
     console.log("checking");
     let allSeats = undefined;
-
+    
+    let queryString = undefined
+    if (event.type == "section"){
+        queryString = "SELECT rowNum, colNum, isSelected, price, section FROM Seats WHERE showID=? AND isAvailable=1 ORDER BY section, rowNum, colNum ASC"
+    } else if (event.type == "price"){
+        queryString = "SELECT rowNum, colNum, isSelected, price, section FROM Seats WHERE showID=? AND isAvailable=1 ORDER BY price, rowNum, colNum ASC"
+    } else {
+        queryString = "SELECT rowNum, colNum, isSelected, price, section FROM Seats WHERE showID=? AND isAvailable=1 ORDER BY rowNum, colNum ASC"
+    }
     if (alreadyExists) {
-        // If the show already exists, retrieve available seats
+        
         let listAvailableSeats = (showID) => {
             return new Promise((resolve, reject) => {
-                pool.query("SELECT rowNum, colNum, isSelected, price FROM Seats WHERE showID=? AND isAvailable=1",
+                pool.query(queryString,
                     [showID], (error, rows) => {
                         if (error) {
                             return reject(error);
                         }
                         return resolve(rows);
-                    });
-            });
-        };
+                    })
+            })
+        }
 
-        allSeats = await listAvailableSeats(event.showID);
-
+        allSeats = await listAvailableSeats(event.showID)
+        
         response = {
             statusCode: 200,
             shows: allSeats
         };
     } else {
-        // If the show doesn't exist, return an error response
+        // If the venue name already exists, return an error response
         response = {
             statusCode: 400,
             error: JSON.stringify(errorMessage)

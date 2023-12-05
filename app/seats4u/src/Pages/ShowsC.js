@@ -73,12 +73,15 @@ function purchaseSeats() {
 }
 
 function showAvailableSeatsSection() {
+  showAvailableSeatsCCon("section")
 }
 
 function showAvailableSeatsPrice() {
+  showAvailableSeatsCCon("price")
 }
 
 function showAvailableSeatsRow() {
+  showAvailableSeatsCCon("row")
 
 }
 
