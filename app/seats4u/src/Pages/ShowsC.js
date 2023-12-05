@@ -3,9 +3,11 @@ import { createShowVMCon } from './controller/CreateShowVMCon';
 import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
 import { searchShowsCCon } from './controller/SearchShowsCCon';
 import { showAvailableSeatsCCon } from './controller/ShowAvailableSeatsCCon';
+import { purchaseSeatsCCon } from './controller/PurchaseSeatsCCon';
 
 // var token;
 var search;
+var seats;
 // var venueName;
 // var showName;
 // var showDate;
@@ -30,7 +32,7 @@ const ShowsC = () => {
       <button className='purchaseSeats' data-testid="purchaseSeats" onClick={(e) => purchaseSeats()} >Purchase Seats</button>
       {" "}
       {" | "} <input id='search' value={search} placeholder='Search Shows' />
-      {" | "} <input id='purchaseSeats' value={purchaseSeats} placeholder='Seats to purchase' />
+      {" | "} <input id='purchaseSeats' value={seats} placeholder='Seats to purchase' />
       <li type="none"></li>
       Show available seats: {" "}
       <button className='showAvailableSeatsPrice' data-testid="showAvailableSeatsPrice" onClick={(e) => showAvailableSeatsPrice()} >Show Available Seats by Price</button>
@@ -46,31 +48,11 @@ const ShowsC = () => {
   );
 };
 
-function createShow() {
-  if (document.getElementById('token').value != "" && document.getElementById('venueName').value != "" &&
-    document.getElementById('showName').value != "" && document.getElementById('showDate').value != "" &&
-    document.getElementById('showTime').value != "" && document.getElementById('defaultPrice').value != "") {
-
-    console.log("token: " + document.getElementById('token').value);
-    console.log("venue name: " + document.getElementById('venueName').value);
-    console.log("show name: " + document.getElementById('showName').value);
-    console.log("show date: " + document.getElementById('showDate').value);
-    console.log("show time: " + document.getElementById('showTime').value);
-    console.log("default price: " + document.getElementById('defaultPrice').value);
-
-    //run controller for VenueVMCon
-    createShowVMCon();
-
-  }
-  else {
-    console.log("error: missing info");
-  }
-}
-
 function listAllActiveShows() {
 }
 
 function purchaseSeats() {
+  purchaseSeatsCCon()
 }
 
 function showAvailableSeatsSection() {
@@ -92,9 +74,6 @@ function listShowsByShow(type) {
 
 function listShowsByVenue(type) {
   searchShowsCCon(type)
-}
-
-function deleteShow() {
 }
 
 export default ShowsC;
