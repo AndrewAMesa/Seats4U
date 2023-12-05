@@ -16,7 +16,6 @@ var venueConfigLeft = [];
 var venueConfigCenter = [];
 var venueConfigRight = [];
 
-
 const VenuesVM = () => {
   return (
     <div className="VenuesVM">
@@ -49,11 +48,11 @@ const VenuesVM = () => {
 
       Venue Layout:
       <li type="none"></li>
-      Left: <input id="venueConfigLeft" readOnly style={{ width: '1000px' }} />
+      Left: <input id="venueConfigLeft" readOnly style={{width: '1000px'}} />
       <li type="none"></li>
       Center: <input id="venueConfigCenter" readOnly style={{ width: '1000px' }} />
       <li type="none"></li>
-      Right: <input id="venueConfigRight" readOnly style={{ width: '1000px' }} />
+      Right: <input id="venueConfigRight" readOnly style={{ width: '1000px'}} />
     </div >
   );
 };
@@ -81,20 +80,20 @@ function createVenue() {
     document.getElementById("venueConfigLeft").value = venueConfigLeft;
     console.log(venueConfigLeft);
 
-    for (let i = 0; i < document.getElementById('numRows').value; i++) {
-      for (let j = 0; j < document.getElementById('centerCols').value; j++) {
-        venueConfigCenter.push(String("r" + i + "c" + j));
+    for (let k = 0; k < document.getElementById('numRows').value; k++) {
+      for (let l = 0; l < document.getElementById('centerCols').value; l++) {
+        venueConfigCenter.push(String("r" + k + "c" + l));
       }
     }
-    document.getElementById("venueConfigCenter").value = venueConfigLeft;
+    document.getElementById("venueConfigCenter").value = venueConfigCenter;
     console.log(venueConfigCenter);
 
-    for (let i = 0; i < document.getElementById('numRows').value; i++) {
-      for (let j = 0; j < document.getElementById('rightCols').value; j++) {
-        venueConfigRight.push(String("r" + i + "c" + j));
+    for (let m = 0; m < document.getElementById('numRows').value; m++) {
+      for (let n = 0; n < document.getElementById('rightCols').value; n++) {
+        venueConfigRight.push(String("r" + m + "c" + n));
       }
     }
-    document.getElementById("venueConfigRight").value = venueConfigLeft;
+    document.getElementById("venueConfigRight").value = venueConfigRight;
     console.log(venueConfigRight);
 
   }
