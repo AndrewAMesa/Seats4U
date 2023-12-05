@@ -12,10 +12,15 @@ var leftCols;
 var centerCols;
 var rightCols;
 
+var venueConfigLeft = [];
+var venueConfigCenter = [];
+var venueConfigRight = [];
+
+
 const VenuesVM = () => {
   return (
     <div className="VenuesVM">
-      <VenueManagerNavBarNavBar/>
+      <VenueManagerNavBarNavBar />
       <button className='createVenue' data-testid="createVenue" onClick={(e) => createVenue()} >Create Venue</button>
       {" "}
       <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>
@@ -38,9 +43,18 @@ const VenuesVM = () => {
       <input id='rightCols' value={rightCols} placeholder='#right columns' />
       <li type="none"></li>
       result: <input id="result" readOnly style={{ width: '1000px' }} />
+
+      <li type="none"></li>
+      <br></br>
+
+      Venue Layout:
+      <li type="none"></li>
+      Left: <input id="venueConfigLeft" readOnly style={{ width: '1000px' }} />
+      <li type="none"></li>
+      Center: <input id="venueConfigCenter" readOnly style={{ width: '1000px' }} />
+      <li type="none"></li>
+      Right: <input id="venueConfigRight" readOnly style={{ width: '1000px' }} />
     </div >
-
-
   );
 };
 
@@ -59,6 +73,30 @@ function createVenue() {
     //run controller for VenueVMCon
     createVenueVMCon();
 
+    for (let i = 0; i < document.getElementById('numRows').value; i++) {
+      for (let j = 0; j < document.getElementById('leftCols').value; j++) {
+        venueConfigLeft.push(String("r" + i + "c" + j));
+      }
+    }
+    document.getElementById("venueConfigLeft").value = venueConfigLeft;
+    console.log(venueConfigLeft);
+
+    for (let i = 0; i < document.getElementById('numRows').value; i++) {
+      for (let j = 0; j < document.getElementById('centerCols').value; j++) {
+        venueConfigCenter.push(String("r" + i + "c" + j));
+      }
+    }
+    document.getElementById("venueConfigCenter").value = venueConfigLeft;
+    console.log(venueConfigCenter);
+
+    for (let i = 0; i < document.getElementById('numRows').value; i++) {
+      for (let j = 0; j < document.getElementById('rightCols').value; j++) {
+        venueConfigRight.push(String("r" + i + "c" + j));
+      }
+    }
+    document.getElementById("venueConfigRight").value = venueConfigLeft;
+    console.log(venueConfigRight);
+
   }
   else {
     console.log("error: missing info");
@@ -66,7 +104,7 @@ function createVenue() {
 }
 
 function deleteVenue() {
-  if (document.getElementById('token').value != ""){
+  if (document.getElementById('token').value != "") {
     console.log("token: " + document.getElementById('token').value);
     //run controller for VenueVMCon
     deleteVenueVMCon();
@@ -77,7 +115,7 @@ function deleteVenue() {
 }
 
 function listVenuesVM() {
-  if (document.getElementById('token').value != ""){
+  if (document.getElementById('token').value != "") {
     console.log("token: " + document.getElementById('token').value);
     //run controller for VenueVMCon
     listVenueVMCon();
