@@ -4,6 +4,7 @@ import { deleteVenueVMCon } from './controller/DeleteVenueVMCon';
 import { listVenueVMCon } from './controller/ListVenueVMCon';
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
 
+var test = ["1", "2", '\n', "3"];
 var token;
 var venueName;
 var location;
@@ -12,9 +13,7 @@ var leftCols;
 var centerCols;
 var rightCols;
 
-var venueConfigLeft = [];
-var venueConfigCenter = [];
-var venueConfigRight = [];
+var venueConfig = [];
 
 const VenuesVM = () => {
   return (
@@ -42,17 +41,13 @@ const VenuesVM = () => {
       <input id='rightCols' value={rightCols} placeholder='#right columns' />
       <li type="none"></li>
       result: <input id="result" readOnly style={{ width: '1000px' }} />
-
       <li type="none"></li>
       <br></br>
-
       Venue Layout:
       <li type="none"></li>
-      Left: <input id="venueConfigLeft" readOnly style={{}} />
-      <li type="none"></li>
-      Center: <input id="venueConfigCenter" readOnly style={{ width: '1000px' }} />
-      <li type="none"></li>
-      Right: <input id="venueConfigRight" readOnly style={{ width: '1000px'}} />
+      <input id="venueLayout" readOnly style={{ width: '1000px' }} />
+      {test}
+
     </div >
   );
 };
@@ -72,29 +67,20 @@ function createVenue() {
     //run controller for VenueVMCon
     createVenueVMCon();
 
-    for (let i = 0; i < document.getElementById('numRows').value; i++) {
-      for (let j = 0; j < document.getElementById('leftCols').value; j++) {
-        venueConfigLeft.push(String("r" + i + "c" + j));
-      }
-    }
-    document.getElementById("venueConfigLeft").value = venueConfigLeft;
-    console.log(venueConfigLeft);
+    //function to create venue layout
+    // 1    2      3      4
+    // A | 30 sold  30   30
+    // B | 30  30  sold  30 
+    // C | 30  30   30   30 
+    // D | 30 sold sold  30
 
-    for (let k = 0; k < document.getElementById('numRows').value; k++) {
-      for (let l = 0; l < document.getElementById('centerCols').value; l++) {
-        venueConfigCenter.push(String("r" + k + "c" + l));
-      }
-    }
-    document.getElementById("venueConfigCenter").value = venueConfigCenter;
-    console.log(venueConfigCenter);
-
-    for (let m = 0; m < document.getElementById('numRows').value; m++) {
-      for (let n = 0; n < document.getElementById('rightCols').value; n++) {
-        venueConfigRight.push(String("r" + m + "c" + n));
-      }
-    }
-    document.getElementById("venueConfigRight").value = venueConfigRight;
-    console.log(venueConfigRight);
+    // for (let i = 0; i < document.getElementById('numRows').value; i++) {
+    //   for (let j = 0; j < document.getElementById('leftCols').value; j++) {
+    //     venueConfig.push(String("r" + i + "c" + j));
+    //   }
+    // }
+    // document.getElementById("venueConfigLeft").value = venueConfigLeft;
+    // console.log(venueConfigLeft);    
 
   }
   else {
