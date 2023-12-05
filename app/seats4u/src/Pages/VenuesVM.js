@@ -48,7 +48,7 @@ const VenuesVM = () => {
 
       Venue Layout:
       <li type="none"></li>
-      Left: <input id="venueConfigLeft" readOnly style={{width: '1000px'}} />
+      Left: <input id="venueConfigLeft" readOnly style={{}} />
       <li type="none"></li>
       Center: <input id="venueConfigCenter" readOnly style={{ width: '1000px' }} />
       <li type="none"></li>
@@ -123,6 +123,5 @@ function listVenuesVM() {
     console.log("error: missing token");
   }
 }
-
 
 export default VenuesVM;
