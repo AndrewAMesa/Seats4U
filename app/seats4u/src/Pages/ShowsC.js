@@ -27,26 +27,19 @@ const ShowsC = () => {
       {" "} */}
       <button className='listAllActiveShows' data-testid="listAllActiveShows" onClick={(e) => listAllActiveShows()} >List All Active Shows</button>
       {" "}
-      <button className='showAvailableSeats' data-testid="showAvailableSeats" onClick={(e) => showAvailableSeats()} >Show Available Seats</button>
-      {" "}
       <button className='purchaseSeats' data-testid="purchaseSeats" onClick={(e) => purchaseSeats()} >Purchase Seats</button>
       {" "}
       {" | "} <input id='search' value={search} placeholder='Search Shows' />
-
       <li type="none"></li>
-      {/* <input id='token' value={token} placeholder='token' />
-      <li type="none"></li> */}
-      {/* <input id='venueName' value={venueName} placeholder='venue name' />
+      Show available seats: {" "}
+      <button className='showAvailableSeatsPrice' data-testid="showAvailableSeatsPrice" onClick={(e) => showAvailableSeatsPrice()} >Show Available Seats by Price</button>
+      {" "}
+      <button className='showAvailableSeatsSection' data-testid="showAvailableSeatsSection" onClick={(e) => showAvailableSeatsSection()} >Show Available Seats by Section</button>
+      {" "}
+      <button className='showAvailableSeatsRow' data-testid="showAvailableSeatRows" onClick={(e) => showAvailableSeatsRow()} >Show Available Seats by Row</button>
+     
       <li type="none"></li>
-      <input id='showName' value={showName} placeholder='show name' />
-      <li type="none"></li>
-      <input id='showDate' value={showDate} placeholder='show date (yyyy-mm-dd)' />
-      <li type="none"></li>
-      <input id='showTime' value={showTime} placeholder='show time (hh:mm:ss)' />
-      <li type="none"></li>
-      <input id='defaultPrice' value={defaultPrice} placeholder='default price' />
-      <li type="none"></li> */}
-      result: <input id="result" readOnly style={{ width: '800px' }} />
+      result: <input id="result" readOnly style={{ width: "800px" }} />
 
     </div>
   );
@@ -74,18 +67,25 @@ function createShow() {
 }
 
 function listAllActiveShows() {
-
 }
 
 function purchaseSeats() {
+}
+
+function showAvailableSeatsSection() {
+}
+
+function showAvailableSeatsPrice() {
+}
+
+function showAvailableSeatsRow() {
 
 }
-function showAvailableSeats() {
-  showAvailableSeatsCCon()
-}
+
 function listShowsByShow(type) {
   searchShowsCCon(type)
 }
+
 function listShowsByVenue(type) {
   searchShowsCCon(type)
 }
