@@ -12,20 +12,20 @@ exports.handler = async (event) => {
 
     let errorMessage = "error";
 
-    console.log(event.name);
+    // Log the name from the event (for debugging purposes)
+    // console.log(event.name);
 
     let alreadyExists = undefined;
 
-   
-    // Validates if that venue name already exists
-    let showNameExists = (showID) => {
+    // Validates if that showID already exists
+    let showIDExists = (showID) => {
         return new Promise((resolve, reject) => {
-            // SQL query to check if the venue name exists (partial match)
+            // SQL query to check if the showID exists
             pool.query("SELECT * FROM Shows WHERE showID=?", [showID], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }
-                console.log(rows);
+                // console.log(rows);
                 if ((rows) && (rows.length >= 1)) {
                     return resolve(true);
                 } else {
@@ -35,43 +35,64 @@ exports.handler = async (event) => {
             });
         });
     };
-    alreadyExists = await showNameExists(event.showID);
-    
+    alreadyExists = await showIDExists(event.showID);
 
     let response = undefined;
-    console.log("checking");
-    let allSeats = undefined;
-    
-    let queryString = undefined
-    if (event.type == "section"){
-        queryString = "SELECT rowNum, colNum, isSelected, price, section FROM Seats WHERE showID=? AND isAvailable=1 ORDER BY section, rowNum, colNum ASC"
-    } else if (event.type == "price"){
-        queryString = "SELECT rowNum, colNum, isSelected, price, section FROM Seats WHERE showID=? AND isAvailable=1 ORDER BY price, rowNum, colNum ASC"
-    } else {
-        queryString = "SELECT rowNum, colNum, isSelected, price, section FROM Seats WHERE showID=? AND isAvailable=1 ORDER BY rowNum, colNum ASC"
-    }
+
     if (alreadyExists) {
-        
-        let listAvailableSeats = (showID) => {
+        let getSeatPrice = (showID, colNum, rowNum) => {
             return new Promise((resolve, reject) => {
-                pool.query(queryString,
-                    [showID], (error, rows) => {
+                // SQL query to get the seat price
+                pool.query("SELECT price FROM Seats WHERE showID=? AND rowNum=? AND colNum=? AND isAvailable=1",
+                    [showID, rowNum, colNum], (error, rows) => {
                         if (error) {
                             return reject(error);
                         }
-                        return resolve(rows);
-                    })
-            })
+                        if ((rows) && (rows.length >= 1)) {
+                            // console.log(rows[0].price);
+                            return resolve(rows[0].price);
+                        } else {
+                            return resolve(0);
+                        }
+                    });
+            });
+        };
+
+        let updateSeat = (showID, colNum, rowNum) => {
+            return new Promise((resolve, reject) => {
+                // SQL query to update the seat availability
+                pool.query("UPDATE Seats SET isAvailable = 0 WHERE showID=? AND rowNum=? AND colNum=? AND isAvailable=1",
+                    [showID, rowNum, colNum], (error, rows) => {
+                        if (error) {
+                            return reject(error);
+                        }
+                        return resolve(true);
+                    });
+            });
+        };
+
+        let totalprice = 0;
+
+        // Loop through each seat in the event
+        for (let i = 0; i < event.seats.length; i++) {
+            totalprice = totalprice + await getSeatPrice(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
+            await updateSeat(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
         }
 
-        allSeats = await listAvailableSeats(event.showID)
-        
-        response = {
-            statusCode: 200,
-            shows: allSeats
-        };
+        // Check the total price and generate the response
+        if (totalprice == 0) {
+            response = {
+                statusCode: 400,
+                error: JSON.stringify("All seats selected have already been bought!")
+            };
+        } else {
+            response = {
+                statusCode: 200,
+                price: totalprice
+            };
+        }
     } else {
-        // If the venue name already exists, return an error response
+        // If the showID does not exist, return an error response
         response = {
             statusCode: 400,
             error: JSON.stringify(errorMessage)
