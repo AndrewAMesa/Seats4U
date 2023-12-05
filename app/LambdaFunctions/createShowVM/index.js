@@ -80,6 +80,7 @@ exports.handler = async (event) => {
         }
 
         let size = await findVenueSize(event.venueName);
+        console.log(size)
         const columnCount = size.reduce((sum, row) => sum + row.colNum, 0);
         const rowCount = size[0].rowNum;
         const totalSeats = columnCount * rowCount
@@ -108,9 +109,9 @@ exports.handler = async (event) => {
         let venueCreationResult = await createShow(event.showName, event.showDate, event.showTime, event.defaultPrice, event.venueName);
 
         // Adds seats to the database
-        let addSeat = (showID, rowNum, columnNum) => {
+        let addSeat = (showID, rowNum, columnNum, price, section) => {
             return new Promise((resolve, reject) => {
-                pool.query("INSERT into Seats(showID, rowNum, colNum) VALUES(?,?,?);", [showID, rowNum, columnNum], (error, rows) => {
+                pool.query("INSERT into Seats(showID, rowNum, colNum, price, section) VALUES(?,?,?,?,?);", [showID, rowNum, columnNum,price, section], (error, rows) => {
                     if (error) {
                         return reject(error);
                     }
@@ -127,9 +128,15 @@ exports.handler = async (event) => {
 
         // console.log(columnCount)
         // Loop to add seats
+        let section = 0
         for (let i = 0; i < columnCount; i++) {
+            if (i + 1 > size[0].colNum && i < size[0].colNum + 1){
+                section++;
+            } else if (i + 1 > size[1].colNum + size[0].colNum && i < size[0].colNum + size[1].colNum + 1){
+                section++;
+            }
             for (let j = 0; j < rowCount; j++) {
-                await addSeat(tempShowID, j, i);
+                await addSeat(tempShowID, j, i, event.defaultPrice, section);
             }
         }
 
