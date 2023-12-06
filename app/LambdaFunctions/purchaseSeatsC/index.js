@@ -43,7 +43,7 @@ exports.handler = async (event) => {
         let getSeatPrice = (showID, colNum, rowNum) => {
             return new Promise((resolve, reject) => {
                 // SQL query to get the seat price
-                pool.query("SELECT price FROM Seats WHERE showID=? AND rowNum=? AND colNum=? AND isAvailable=1",
+                pool.query("SELECT price FROM Seats WHERE showID=? AND rowNum=? AND colNum=? AND isSelected=1",
                     [showID, rowNum, colNum], (error, rows) => {
                         if (error) {
                             return reject(error);
@@ -61,7 +61,25 @@ exports.handler = async (event) => {
         let updateSeat = (showID, colNum, rowNum) => {
             return new Promise((resolve, reject) => {
                 // SQL query to update the seat availability
-                pool.query("UPDATE Seats SET isAvailable = 0 WHERE showID=? AND rowNum=? AND colNum=? AND isAvailable=1",
+                pool.query("UPDATE Seats SET isAvailable = 0, isSelected = 1 WHERE showID=? AND rowNum=? AND colNum=? AND isAvailable=1",
+                    [showID, rowNum, colNum], (error, rows) => {
+                        if (error) {
+                            return reject(error);
+                        }
+                        if (rows.affectedRows > 0) {
+                            return resolve(true);
+                        }else {
+                            console.log("hi")
+                            return resolve(false);
+                        }
+                    });
+            });
+        };
+        
+        let updateSeatEnd = (showID, colNum, rowNum) => {
+            return new Promise((resolve, reject) => {
+                // SQL query to update the seat availability
+                pool.query("UPDATE Seats SET isSelected = 0 WHERE showID=? AND rowNum=? AND colNum=? AND isSelected=1",
                     [showID, rowNum, colNum], (error, rows) => {
                         if (error) {
                             return reject(error);
@@ -70,14 +88,62 @@ exports.handler = async (event) => {
                     });
             });
         };
+        
+        let updateShow = (showID) => {
+            return new Promise((resolve, reject) => {
+                // SQL query to update the seat availability
+                pool.query("UPDATE Shows SET availableSeatsCounter = availableSeatsCounter - 1 WHERE showID=?",
+                    [showID], (error, rows) => {
+                        if (error) {
+                            return reject(error);
+                        }
+                        return resolve(true);
+                    });
+            });
+        };
+        
+         let checkIfSoldOut = (showID) => {
+            return new Promise((resolve, reject) => {
+                // SQL query to update the seat availability
+                pool.query("SELECT availableSeatsCounter FROM Shows WHERE showID=? AND availableSeatsCounter=0",
+                    [showID], (error, rows) => {
+                        if (error) {
+                            return reject(error);
+                        }
+                        if (rows.length >= 1){
+                              pool.query("UPDATE Shows SET soldOut=1 WHERE showID=?",
+                                [showID], (error, rows) => {
+                                    console.log("in")
+                                    if (error) {
+                                        return reject(error);
+                                    }
+                                    if (rows.affectedRows >= 1){
+                                        return resolve(true);
+                                    } else {
+                                        return resolve(false);
+                                    }
+                                });
+                        } else {
+                            return resolve(false);
+                        }
+                    });
+            });
+        };
+        
 
         let totalprice = 0;
-
+        let seatString = ""
         // Loop through each seat in the event
         for (let i = 0; i < event.seats.length; i++) {
-            totalprice = totalprice + await getSeatPrice(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
-            await updateSeat(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
+            if (await updateSeat(event.showID, event.seats[i].colNum, event.seats[i].rowNum)){
+                totalprice = totalprice + await getSeatPrice(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
+                let tempSeat = String.fromCharCode(event.seats[i].rowNum + 'A'.charCodeAt(0))
+                seatString = seatString + (tempSeat + event.seats[i].colNum) + ", "
+                await updateShow(event.showID)
+            }
+            await updateSeatEnd(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
         }
+        await checkIfSoldOut(event.showID)
 
         // Check the total price and generate the response
         if (totalprice == 0) {
@@ -88,7 +154,8 @@ exports.handler = async (event) => {
         } else {
             response = {
                 statusCode: 200,
-                price: totalprice
+                price: totalprice,
+                seats: seatString
             };
         }
     } else {
