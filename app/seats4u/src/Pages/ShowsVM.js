@@ -25,6 +25,8 @@ const ShowsVM = () => {
       {" "}
       <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
       {" "} <button className='activateShow' data-testid="activateShow" onClick={(e) => activateShow()} >Activate Show</button>
+      {" "}
+      <button className='generateShowReportVM' data-testid="generateShowReportVM" onClick={(e) => generateShowReportVM()} >Generate Show Report</button>
       {" | "} <input id='search' value={search} placeholder='Search ShowsVM' />
 
       <li type="none"></li>
@@ -71,6 +73,10 @@ function createShow() {
 
 function activateShow() {
   activateShowCon();
+}
+
+function generateShowReportVM() {
+
 }
 
 function listShowsVM() {

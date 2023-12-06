@@ -21,7 +21,7 @@ const ShowsA = () => {
       {" "}
       <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
       {" "}
-      <button className='generateShowReport' data-testid="generateShowReport" onClick={(e) => generateShowReport()} >Generate Show Report</button>
+      <button className='generateShowReportA' data-testid="generateShowReportA" onClick={(e) => generateShowReportA()} >Generate Show Report</button>
       {" | "} <input id='search' value={search} placeholder='Search ShowsA' />
 
       <li type="none"></li>
@@ -64,7 +64,7 @@ function createShow() {
   }
 }
 
-function generateShowReport(){
+function generateShowReportA(){
   
 }
 

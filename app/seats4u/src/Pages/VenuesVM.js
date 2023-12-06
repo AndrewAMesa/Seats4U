@@ -23,7 +23,7 @@ const VenuesVM = () => {
       {" "}
       <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>
       {" "}
-      <button className='listVenuesVM' data-testid="listVenuesVM" onClick={(e) => listVenuesVM()} >List Venues</button>
+      <button className='showVenueVM' data-testid="showVenueVM" onClick={(e) => showVenueVM()} >Show Venue</button>
 
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
@@ -99,7 +99,7 @@ function deleteVenue() {
   }
 }
 
-function listVenuesVM() {
+function showVenueVM() {
   if (document.getElementById('token').value != "") {
     console.log("token: " + document.getElementById('token').value);
     //run controller for VenueVMCon
