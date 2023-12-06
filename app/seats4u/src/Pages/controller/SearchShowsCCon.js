@@ -31,7 +31,7 @@ export function searchShowsCCon(type) {
             console.log(JSON.parse(response.statusCode));
             let list = ''
             for (let i = 0; i < response.shows.length; i++){
-                list = list + response.shows[i].showName + ": date " + response.shows[i].showDate + ": soldOut " + response.shows[i].soldOut + ", ";
+                list = list + response.shows[i].showName + ": time" + response.shows[i].showTime + ": date  " + response.shows[i].showDate + ": soldOut " + response.shows[i].soldOut +" showID " + response.shows[i].showID + ", " ;
             }
             document.getElementById("result").value = list
         } else {

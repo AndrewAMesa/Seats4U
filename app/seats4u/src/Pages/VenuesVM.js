@@ -4,7 +4,7 @@ import { deleteVenueVMCon } from './controller/DeleteVenueVMCon';
 import { listVenueVMCon } from './controller/ListVenueVMCon';
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
 
-var test = ["1", "2", '\n', "3"];
+var test = "jkl";
 var token;
 var venueName;
 var location;
