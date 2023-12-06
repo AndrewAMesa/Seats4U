@@ -3,8 +3,8 @@ import { createVenueVMCon } from './controller/CreateVenueVMCon';
 import { deleteVenueVMCon } from './controller/DeleteVenueVMCon';
 import { listVenueVMCon } from './controller/ListVenueVMCon';
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
+import parse from 'html-react-parser';
 
-var test = "jkl";
 var token;
 var venueName;
 var location;
@@ -12,8 +12,7 @@ var numRows;
 var leftCols;
 var centerCols;
 var rightCols;
-
-var venueConfig = [];
+var venueConfig = ["fdjksl"];
 
 const VenuesVM = () => {
   return (
@@ -46,7 +45,8 @@ const VenuesVM = () => {
       Venue Layout:
       <li type="none"></li>
       <input id="venueLayout" readOnly style={{ width: '1000px' }} />
-      {test}
+      <li type="none"></li>
+      {/* {parse(test)} */}
 
     </div >
   );
@@ -55,7 +55,7 @@ const VenuesVM = () => {
 function createVenue() {
   if (document.getElementById('location').value != "" && document.getElementById('numRows').value != "" &&
     document.getElementById('leftCols').value != "" && document.getElementById('centerCols').value != "" &&
-    document.getElementById('rightCols').value != "" && document.getElementById('venueName').value != "") {
+    document.getElementById('rightCols').value != "" && document.getElementById('venueName').value != "" && document.getElementById('numRows').value < 27) {
 
     console.log("venue name: " + document.getElementById('venueName').value);
     console.log("location: " + document.getElementById('location').value);
@@ -73,14 +73,15 @@ function createVenue() {
     // B | 30  30  sold  30 
     // C | 30  30   30   30 
     // D | 30 sold sold  30
-
+    
     // for (let i = 0; i < document.getElementById('numRows').value; i++) {
     //   for (let j = 0; j < document.getElementById('leftCols').value; j++) {
     //     venueConfig.push(String("r" + i + "c" + j));
+    //     String.fromCharCode(65 + i) + " | "; //n = 0 = A      looks like A | ...
     //   }
     // }
-    // document.getElementById("venueConfigLeft").value = venueConfigLeft;
-    // console.log(venueConfigLeft);    
+    // document.getElementById("venueConfig").value = venueConfig;
+    // console.log(venueConfig);    
 
   }
   else {
