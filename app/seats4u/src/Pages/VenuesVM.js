@@ -1,7 +1,7 @@
 import React from 'react';
 import { createVenueVMCon } from './controller/CreateVenueVMCon';
 import { deleteVenueVMCon } from './controller/DeleteVenueVMCon';
-import { listVenueVMCon } from './controller/ListVenueVMCon';
+import { showVenueVMCon } from './controller/ShowVenueVMCon';
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
 import parse from 'html-react-parser';
 
@@ -104,7 +104,7 @@ function showVenueVM() {
   if (document.getElementById('token').value != "") {
     console.log("token: " + document.getElementById('token').value);
     //run controller for VenueVMCon
-    listVenueVMCon();
+    showVenueVMCon();
   }
   else {
     console.log("error: missing token");

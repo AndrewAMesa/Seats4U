@@ -69,7 +69,7 @@ exports.handler = async (event) => {
             let ListShowsVenue = (name) => {
                 return new Promise((resolve, reject) => {
                     // SQL query to retrieve shows for a venue (partial match on venueName, ordered by showDate)
-                    pool.query("SELECT showName, showDate, showTime, defaultPrice, soldOut FROM Shows WHERE venueName LIKE CONCAT('%', ?, '%') AND isActive = 1 ORDER BY showDate ASC",
+                    pool.query("SELECT showName, showDate, showTime, defaultPrice, soldOut, showID FROM Shows WHERE venueName LIKE CONCAT('%', ?, '%') AND isActive = 1 ORDER BY showDate ASC",
                         [name], (error, rows) => {
                             if (error) {
                                 return reject(error);
@@ -85,7 +85,7 @@ exports.handler = async (event) => {
             let ListShowsShow = (name) => {
                 return new Promise((resolve, reject) => {
                     // SQL query to retrieve shows for a show name (partial match on showName, ordered by showDate)
-                    pool.query("SELECT showName, showDate, showTime, defaultPrice, soldOut FROM Shows WHERE showName LIKE CONCAT('%', ?, '%') AND isActive=1 ORDER BY showDate ASC",
+                    pool.query("SELECT showName, showDate, showTime, defaultPrice, soldOut, showID FROM Shows WHERE showName LIKE CONCAT('%', ?, '%') AND isActive=1 ORDER BY showDate ASC",
                         [name], (error, rows) => {
                             if (error) {
                                 return reject(error);

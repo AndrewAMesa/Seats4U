@@ -45,7 +45,7 @@ export function purchaseSeatsCCon(type) {
         // Check if the response status code is 200
         if (JSON.parse(response.statusCode) === 200) {
             console.log(JSON.parse(response.statusCode));
-            document.getElementById("result").value = "Total price:" + response.price;
+            document.getElementById("result").value = "Total price: " + response.price + ", Seats Purchased: " + response.seats;
         } else {
             // If status code is not 200, display the error message
             document.getElementById("result").value = JSON.parse(response.error);
