@@ -4,15 +4,19 @@ import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
 import { searchShowsCCon } from './controller/SearchShowsCCon';
 import { showAvailableSeatsCCon } from './controller/ShowAvailableSeatsCCon';
 import { purchaseSeatsCCon } from './controller/PurchaseSeatsCCon';
+import parse from 'html-react-parser';
 
 // var token;
 var search;
 var seats;
+
 // var venueName;
 // var showName;
 // var showDate;
 // var showTime;
 // var defaultPrice;
+
+
 
 const ShowsC = () => {
 
@@ -34,19 +38,29 @@ const ShowsC = () => {
       {" | "} <input id='search' value={search} placeholder='Search Shows' />
       {" | "} <input id='purchaseSeats' value={seats} placeholder='Seats to purchase' />
       <li type="none"></li>
+
       Show available seats: {" "}
       <button className='showAvailableSeatsPrice' data-testid="showAvailableSeatsPrice" onClick={(e) => showAvailableSeatsPrice()} >Show Available Seats by Price</button>
       {" "}
       <button className='showAvailableSeatsSection' data-testid="showAvailableSeatsSection" onClick={(e) => showAvailableSeatsSection()} >Show Available Seats by Section</button>
       {" "}
       <button className='showAvailableSeatsRow' data-testid="showAvailableSeatRows" onClick={(e) => showAvailableSeatsRow()} >Show Available Seats by Row</button>
-     
       <li type="none"></li>
-      result: <input id="result" readOnly style={{ width: "800px" }} />
+
+      {/* result: <header id="result" onLoad={(e) => setDefaultResult()}  /> */}
+
+
+      <header id="result" value= "" title="qwerty" />
+      {/* {document.getElementById("result").value} */}
 
     </div>
   );
 };
+
+// function setDefaultResult() {
+//   document.getElementById("result").value = "";
+//   console.log("result has been set");
+// }
 
 function listAllActiveShows() {
 }
