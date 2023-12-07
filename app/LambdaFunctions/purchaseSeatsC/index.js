@@ -130,13 +130,25 @@ exports.handler = async (event) => {
             });
         };
         
+         let updateShowRevenue = (showID, totalPrice) => {
+            return new Promise((resolve, reject) => {
+                // SQL query to update the seat availability
+                pool.query("UPDATE Shows SET revenue = revenue + ? WHERE showID=?",
+                    [totalPrice, showID], (error, rows) => {
+                        if (error) {
+                            return reject(error);
+                        }
+                        return resolve(true);
+                    });
+            });
+        };
 
-        let totalprice = 0;
+        let totalPrice = 0;
         let seatString = ""
         // Loop through each seat in the event
         for (let i = 0; i < event.seats.length; i++) {
             if (await updateSeat(event.showID, event.seats[i].colNum, event.seats[i].rowNum)){
-                totalprice = totalprice + await getSeatPrice(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
+                totalPrice = totalPrice + await getSeatPrice(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
                 let tempSeat = String.fromCharCode(event.seats[i].rowNum + 'A'.charCodeAt(0))
                 seatString = seatString + (tempSeat + event.seats[i].colNum) + ", "
                 await updateShow(event.showID)
@@ -144,9 +156,10 @@ exports.handler = async (event) => {
             await updateSeatEnd(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
         }
         await checkIfSoldOut(event.showID)
+        await updateShowRevenue(event.showID, totalPrice)
 
         // Check the total price and generate the response
-        if (totalprice == 0) {
+        if (totalPrice == 0) {
             response = {
                 statusCode: 400,
                 error: JSON.stringify("All seats selected have already been bought!")
@@ -154,7 +167,7 @@ exports.handler = async (event) => {
         } else {
             response = {
                 statusCode: 200,
-                price: totalprice,
+                price: totalPrice,
                 seats: seatString
             };
         }

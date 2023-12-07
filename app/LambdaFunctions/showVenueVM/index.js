@@ -41,7 +41,7 @@ exports.handler = async (event) => {
     if (validToken) {
         let selectVenue = (venueToken) => {
             return new Promise((resolve, reject) => {
-                  pool.query("SELECT * FROM Venues WHERE venueToken=?", [venueToken], (error, rows) => {
+                  pool.query("SELECT * FROM Venues JOIN Sections ON Venues.venueName = Sections.venueName WHERE venueToken=?", [venueToken], (error, rows) => {
                       if (error) { return reject(error); }
                       if ((rows) && (rows.length >= 1)) {
                           return resolve(rows);
@@ -75,4 +75,3 @@ exports.handler = async (event) => {
         
     }
 }
-      
