@@ -2,11 +2,10 @@ import { post } from "./Api"
 
 export function generateShowsReportVMCon(requestRedraw) {
     // potentially modify the model
-    let venueToken = document.getElementById("token");
+    let adminToken = document.getElementById("token");
 
      // prepare payload for the post
-     let data = {'token': venueToken.value}
-    
+     let data = {'token': adminToken.value}
 
      // Callback function to handle the response from the server
      const handler = (response) => {
@@ -28,16 +27,23 @@ export function generateShowsReportVMCon(requestRedraw) {
                 console.log(response.venues[i].availableSeatsCounter);
                 console.log(response.venues[i].venueName);
                 console.log(response.venues[i].revenue);
-                console.log(response.venues[i].location);
+                console.log(response.location[i].revenue);
 
                 // Formatting the response string for each show
-                const isActive = response.venues[i].isActive;
-                const soldOut = response.venues[i].soldOut;
+                const isActive = response.shows[i].isActive;
+                const soldOut = response.shows[i].soldOut;
                 // Convert SQL date and time strings to JavaScript Date object
-                const dateString = response.venues[i].showDate;
-                const timeString = response.venues[i].showTime;
+                const dateObject = new Date(`${response.shows[i].showDate}T${response.shows[i].showTime}`);
     
-                const showInfo = `${response.venues[i].showName}: ShowID: ${response.venues[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${dateString}, showTime: ${timeString}, defaultPrice: ${response.venues[i].defaultPrice}, availableSeatsCounter: ${response.venues[i].availableSeatsCounter}, Revenue: ${response.venues[i].revenue}  Location: ${response.venues[i].location}`;
+                // Format date and time as strings
+                const formattedDate = dateObject.toLocaleDateString();
+                const formattedTime = dateObject.toLocaleTimeString();
+    
+                // Display the formatted date and time
+                console.log("Formatted Date: " + formattedDate);
+                console.log("Formatted Time: " + formattedTime);
+    
+                const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${formattedDate}, showTime: ${formattedTime}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}, Revenue: ${response.shows[i].revenue}, Location: ${response.shows[i].location} `;
                 list = list + showInfo;
 
             }

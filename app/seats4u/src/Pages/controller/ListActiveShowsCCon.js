@@ -1,6 +1,6 @@
 import { get } from "./Api"
 
-export function listAllActiveShowsCCon(requestRedraw) {
+export function listActiveShowsCCon(requestRedraw) {
     
      get('/listActiveShowsC')
      // Callback function to handle the response from the server
@@ -27,10 +27,15 @@ export function listAllActiveShowsCCon(requestRedraw) {
 
 
             const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${response.shows[i].showDate}, showTime: ${response.shows[i].showTime}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}`;
-            list = list + showInfo;
+            if (response.shows[i].soldOut == 1) {
+                list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + response.shows[i].showDate + " | <mark>sold out</mark> | " + "showID: " + response.shows[i].showID + "<br>";
+                } else {
+                list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + response.shows[i].showDate + " | <mark>available</mark> | " + "showID: " + response.shows[i].showID + "<br>";
+            }
         }
-        document.getElementById("activeShows").innerHTML = list
-        document.getElementById("result").value = list
+        //document.getElementById("activeShows").innerHTML = ""
+        document.getElementById("result").innerHTML = list
+        //document.getElementById("result").value = list
 
 
     })

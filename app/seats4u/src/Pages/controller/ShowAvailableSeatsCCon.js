@@ -100,6 +100,8 @@ export function showAvailableSeatsCCon(type) {
             tableHTML += '</table>';
 
             document.getElementById("seatInfo").innerHTML = tableHTML;
+            
+            document.getElementById("result").innerHTML = ""
 
             let list2 = ''
             for (let i = 0; i < response.shows.length; i++) { //list of all seats in a show 
