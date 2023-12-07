@@ -25,15 +25,8 @@ export function listActiveShowSCCon(requestRedraw) {
             // Convert SQL date and time strings to JavaScript Date object
             const dateObject = new Date(`${response.shows[i].showDate}T${response.shows[i].showTime}`);
 
-            // Format date and time as strings
-            const formattedDate = dateObject.toLocaleDateString();
-            const formattedTime = dateObject.toLocaleTimeString();
 
-            // Display the formatted date and time
-            console.log("Formatted Date: " + formattedDate);
-            console.log("Formatted Time: " + formattedTime);
-
-            const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${formattedDate}, showTime: ${formattedTime}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}`;
+            const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${response.shows[i].showDate}, showTime: ${response.shows[i].showTime}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}`;
             list = list + showInfo;
         }
         document.getElementById("result").value = list

@@ -4,6 +4,7 @@ import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
 import { searchShowsCCon } from './controller/SearchShowsCCon';
 import { showAvailableSeatsCCon } from './controller/ShowAvailableSeatsCCon';
 import { purchaseSeatsCCon } from './controller/PurchaseSeatsCCon';
+import { listActiveShowSCCon } from './controller/ListActiveShowsCCon';
 import parse from 'html-react-parser';
 
 var search;
@@ -60,9 +61,7 @@ const ShowsC = () => {
 // }
 
 function listAllActiveShows() {
-  test123 = "test456";
-  // forceRedraw(redraw + 1);
-  console.log(test123);
+  listActiveShowSCCon()
 }
 
 
