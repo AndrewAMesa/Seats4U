@@ -1,6 +1,6 @@
 import { get } from "./Api"
 
-export function listActiveShowSCCon(requestRedraw) {
+export function listAllActiveShowsCCon(requestRedraw) {
     
      get('/listActiveShowsC')
      // Callback function to handle the response from the server
@@ -26,12 +26,7 @@ export function listActiveShowSCCon(requestRedraw) {
             const dateObject = new Date(`${response.shows[i].showDate}T${response.shows[i].showTime}`);
 
 
-<<<<<<< HEAD
             const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${response.shows[i].showDate}, showTime: ${response.shows[i].showTime}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}`;
-=======
-         
-            const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${response[i].showDate}, showTime: ${response[i].showTime}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}`;
->>>>>>> c292894 (generateShowReport Should Work Now)
             list = list + showInfo;
         }
         document.getElementById("result").value = list

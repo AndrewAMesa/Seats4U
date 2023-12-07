@@ -3,7 +3,7 @@ import { createShowVMCon } from './controller/CreateShowVMCon';
 import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
 import { searchShowsCCon } from './controller/SearchShowsCCon';
 import { showAvailableSeatsCCon } from './controller/ShowAvailableSeatsCCon';
-import {listAllActiveShowsCCcon} from  './controller/ListActiveShowsCCon';
+import {listAllActiveShowsCCon} from  './controller/ListActiveShowsCCon';
 import { purchaseSeatsCCon } from './controller/PurchaseSeatsCCon';
 import { listActiveShowSCCon } from './controller/ListActiveShowsCCon';
 import parse from 'html-react-parser';
@@ -62,11 +62,7 @@ const ShowsC = () => {
 // }
 
 function listAllActiveShows() {
-<<<<<<< HEAD
-  listActiveShowSCCon()
-=======
-  
->>>>>>> c292894 (generateShowReport Should Work Now)
+  listAllActiveShowsCCon()
 }
 
 
