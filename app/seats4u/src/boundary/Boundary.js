@@ -1,5 +1,3 @@
-
-
 /* Redraw entire canvas from model */
 export function redrawCanvas(model, canvasObj, appObj) {
   const ctx = canvasObj.getContext('2d');

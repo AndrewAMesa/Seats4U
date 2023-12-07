@@ -22,7 +22,6 @@ export function searchShowsCCon(type) {
         };
     }
 
-
     // Callback function to handle the response from the server
     const handler = (response) => {
         console.log(response);
@@ -34,17 +33,17 @@ export function searchShowsCCon(type) {
             let list = "";
             for (let i = 0; i < response.shows.length; i++) {
                 if (response.shows[i].soldOut == 0) {
-                list = list + response.shows[i].showName + ": time" + response.shows[i].showTime + ": date  " + response.shows[i].showDate + "<mark> sold out <mark> " + "showID" + response.shows[i].showID + "<br>";
+                list = list + response.shows[i].showName + ": time" + response.shows[i].showTime + ": date  " + response.shows[i].showDate + "<mark> sold out </mark>" + "showID" + response.shows[i].showID + "<br>";
                 }
                 else {
-                    list = list + response.shows[i].showName + ": time" + response.shows[i].showTime + ": date  " + response.shows[i].showDate + "<mark> available <mark> " + "showID" + response.shows[i].showID + "<br>";
+                    list = list + response.shows[i].showName + ": time" + response.shows[i].showTime + ": date  " + response.shows[i].showDate + "<mark> available </mark>" + "showID" + response.shows[i].showID + "<br>";
                 }
             }
             console.log(list);
-            document.getElementById("result").value = parse(list);
+            document.getElementById("result").innerHTML = list;
         }
         else {
-            document.getElementById("result").value = JSON.parse(response.error);
+            document.getElementById("result").innerHTML = JSON.parse(response.error);
         }
     };
 
