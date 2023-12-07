@@ -18,8 +18,9 @@ export function showAvailableSeatsCCon(type) {
             console.log(JSON.parse(response.statusCode));
             let list = ''
             for (let i = 0; i < response.shows.length; i++){ //list of all seats in a show 
-                
-                list = list + String.fromCharCode('A'.charCodeAt(0) + response.shows[i].rowNum) + (response.shows[i].colNum + 1) +  ", ";
+                if (response.shows[i].isAvailable == 1){
+                    list = list + String.fromCharCode('A'.charCodeAt(0) + response.shows[i].rowNum) + (response.shows[i].colNum + 1) +  ", ";
+                }
             }
             document.getElementById("seatInfo").value = list
         } else {
