@@ -41,7 +41,7 @@ export function generateShowsReportACon(requestRedraw) {
                 list = list + showInfo;
 
             }
-            document.getElementById("result").value = list
+            document.getElementById("showReportA").innerHTML = list
         } else {
             document.getElementById("result").value = JSON.parse(response.error);
         }

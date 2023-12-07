@@ -1,6 +1,7 @@
 import React from 'react';
 import { createShowVMCon } from './controller/CreateShowVMCon';
 import AdminNavBar from '../Pages/Components/AdminNavBar.js';
+import {generateShowsReportACon} from './controller/GenerateShowsReportACon.js';
 
 var token;
 var search;
@@ -38,6 +39,10 @@ const ShowsA = () => {
       <input id='defaultPrice' value={defaultPrice} placeholder='default price' />
       <li type="none"></li>
       result: <input id="result" readOnly style={{ width: '800px' }}/>
+      <li type="none"></li>
+      <div id="showReportA"></div>
+
+
 
     </div>
   );
@@ -65,7 +70,7 @@ function createShow() {
 }
 
 function generateShowReportA(){
-  
+  generateShowsReportACon();
 }
 
 function listShowsA() {

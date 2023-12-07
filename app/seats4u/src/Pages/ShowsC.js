@@ -4,7 +4,7 @@ import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
 import { searchShowsCCon } from './controller/SearchShowsCCon';
 import { showAvailableSeatsCCon } from './controller/ShowAvailableSeatsCCon';
 import { purchaseSeatsCCon } from './controller/PurchaseSeatsCCon';
-import { listActiveShowSCCon } from './controller/ListActiveShowsCCon';
+import { listActiveShowsCCon } from './controller/ListActiveShowsCCon';
 import parse from 'html-react-parser';
 
 var search;
@@ -43,8 +43,14 @@ const ShowsC = () => {
       {" "}
       <button className='showAvailableSeatsRow' data-testid="showAvailableSeatRows" onClick={(e) => showAvailableSeatsRow()} >Show Available Seats by Row</button>
       <li type="none"></li>
-      Seat Info: <input id="seatInfo" readOnly style={{ width: '800px' }}/>
+      Seat Info: <input id='seatInfoBar' readOnly style = {{ width: '800px' }} />
+      
+      
+      <div id="seatInfo"> </div>
       <li type="none"></li>
+      <div id="activeShows"> </div>
+      <li type="none"></li>
+
 
       <div id="result"> </div>
      
@@ -61,7 +67,7 @@ const ShowsC = () => {
 // }
 
 function listAllActiveShows() {
-  listActiveShowSCCon()
+  listActiveShowsCCon()
 }
 
 

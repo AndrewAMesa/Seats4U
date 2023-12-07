@@ -5,7 +5,7 @@ export function generateShowsReportVMCon(requestRedraw) {
     let adminToken = document.getElementById("token");
 
      // prepare payload for the post
-     let data = {'token': venueToken.value}
+     let data = {'token': adminToken.value}
 
      // Callback function to handle the response from the server
      const handler = (response) => {
@@ -47,7 +47,7 @@ export function generateShowsReportVMCon(requestRedraw) {
                 list = list + showInfo;
 
             }
-            document.getElementById("result").value = list
+            document.getElementById("showReportVM").innerHTML = list
         } else {
             document.getElementById("result").value = JSON.parse(response.error);
         }

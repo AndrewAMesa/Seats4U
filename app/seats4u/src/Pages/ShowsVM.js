@@ -1,7 +1,7 @@
 import React from 'react';
 import { createShowVMCon } from './controller/CreateShowVMCon';
 import { deleteShowVMCon } from './controller/DeleteShowVMCon';
-
+import { generateShowsReportVMCon } from './controller/GenerateShowsReportVMCon.js';
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
 import { activateShowCon } from './controller/ActivateShowVMCon.js';
 
@@ -45,6 +45,9 @@ const ShowsVM = () => {
       <input id='defaultPrice' value={defaultPrice} placeholder='default price' />
       <li type="none"></li>
       result: <input id="result" readOnly style={{ width: '800px' }} />
+      <li type="none"></li>
+      <div id="showReportVM"></div>
+
 
     </div>
   );
@@ -76,6 +79,7 @@ function activateShow() {
 }
 
 function generateShowReportVM() {
+  generateShowsReportVMCon();
 
 }
 

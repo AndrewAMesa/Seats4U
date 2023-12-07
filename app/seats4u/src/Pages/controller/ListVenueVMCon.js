@@ -19,9 +19,11 @@ export function listVenueVMCon(requestRedraw) {
             for (let i = 0; i < response.venues.length; i++){
                 console.log(response.venues[i].venueName);
                 console.log(response.venues[i].venueToken);
-                list = list + response.venues[i].venueName + ":" + response.venues[i].venueToken +  ", ";
+                list = list + "Venue: " + response.venues[i].venueName + " | Token: " + response.venues[i].venueToken + "<br>";
             }
             document.getElementById("result").value = list
+            document.getElementById("venuesList").innerHTML = list
+
         } else {
             document.getElementById("result").value = JSON.parse(response.error);
         }
