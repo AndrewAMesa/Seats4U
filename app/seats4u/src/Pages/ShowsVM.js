@@ -1,7 +1,7 @@
 import React from 'react';
 import { createShowVMCon } from './controller/CreateShowVMCon';
 import { deleteShowVMCon } from './controller/DeleteShowVMCon';
-
+import { generateShowsReportVMCon } from './controller/GenerateShowsReportVMCon.js';
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
 import { activateShowCon } from './controller/ActivateShowVMCon.js';
 
@@ -76,6 +76,7 @@ function activateShow() {
 }
 
 function generateShowReportVM() {
+  generateShowsReportVMCon();
 
 }
 
