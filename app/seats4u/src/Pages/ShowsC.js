@@ -6,19 +6,14 @@ import { showAvailableSeatsCCon } from './controller/ShowAvailableSeatsCCon';
 import { purchaseSeatsCCon } from './controller/PurchaseSeatsCCon';
 import parse from 'html-react-parser';
 
-// var token;
 var search;
 var seats;
-
-// var venueName;
-// var showName;
-// var showDate;
-// var showTime;
-// var defaultPrice;
-
-
+var test123 = "test123";
 
 const ShowsC = () => {
+  // let [redraw, forceRedraw] = React.useState(0);
+  // React.useEffect(() => {
+  // }, [redraw]);
 
   return (
     <div className="ShowsC">
@@ -47,11 +42,12 @@ const ShowsC = () => {
       <button className='showAvailableSeatsRow' data-testid="showAvailableSeatRows" onClick={(e) => showAvailableSeatsRow()} >Show Available Seats by Row</button>
       <li type="none"></li>
       Seat Info: <input id="seatInfo" readOnly style={{ width: '800px' }}/>
-      {/* result: <header id="result" onLoad={(e) => setDefaultResult()}  /> */}
+      <li type="none"></li>
 
-
-      <header id="result" value= "" title="qwerty" />
-      {/* {document.getElementById("result").value} */}
+      <div id="result"> </div>
+     
+     
+      {/*  {document.getElementById("result").value} */}
 
     </div>
   );
@@ -63,7 +59,11 @@ const ShowsC = () => {
 // }
 
 function listAllActiveShows() {
+  test123 = "test456";
+  // forceRedraw(redraw + 1);
+  console.log(test123);
 }
+
 
 function purchaseSeats() {
   purchaseSeatsCCon()
