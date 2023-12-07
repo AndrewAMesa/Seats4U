@@ -4,7 +4,7 @@ import { post } from "./Api";
 // Function to handle seat purchase
 export function purchaseSeatsCCon(type) {
     // Retrieve showID and seatString elements from the DOM
-    let showID = document.getElementById("search");
+    let showID = document.getElementById("showID");
     let seatString = document.getElementById("purchaseSeats");
 
     // Split the seatString value into an array and trim each element

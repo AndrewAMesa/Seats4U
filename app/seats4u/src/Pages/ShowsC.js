@@ -35,8 +35,9 @@ const ShowsC = () => {
       {" "}
       <button className='purchaseSeats' data-testid="purchaseSeats" onClick={(e) => purchaseSeats()} >Purchase Seats</button>
       {" "}
-      {" | "} <input id='search' value={search} placeholder='Search Shows' />
-      {" | "} <input id='purchaseSeats' value={seats} placeholder='Seats to purchase' />
+      {" | "} <input id='search' value={search }  style = {{ width: '210px' }} placeholder='List Shows (venue or show name)' />
+      {" | "} <input id='showID' value={seats} style = {{ width: '215px' }} placeholder='Enter ShowID for Seats' />
+      {" | "} <input id='purchaseSeats' value={seats} style = {{ width: '215px' }} placeholder='Seats to Purchase (EX: A1,C1,...)' />
       <li type="none"></li>
 
       Show available seats: {" "}

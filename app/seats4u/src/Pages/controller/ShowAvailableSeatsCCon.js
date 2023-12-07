@@ -2,7 +2,7 @@ import { post } from "./Api"
 
 export function showAvailableSeatsCCon(type) {
     // potentially modify the model
-    let showID = document.getElementById("search");
+    let showID = document.getElementById("showID");
 
      // prepare payload for the post
     let data = {'showID': showID.value,
