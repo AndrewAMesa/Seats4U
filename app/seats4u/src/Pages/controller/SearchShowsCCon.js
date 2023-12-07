@@ -32,11 +32,11 @@ export function searchShowsCCon(type) {
             //console.log(JSON.parse(response.statusCode));
             let list = "";
             for (let i = 0; i < response.shows.length; i++) {
-                if (response.shows[i].soldOut == 0) {
-                list = list + response.shows[i].showName + ": time" + response.shows[i].showTime + ": date  " + response.shows[i].showDate + "<mark> sold out </mark>" + "showID" + response.shows[i].showID + "<br>";
+                if (response.shows[i].soldOut == 1) {
+                list = list + response.shows[i].showName + ": time: " + response.shows[i].showTime + " | date:  " + response.shows[i].showDate + " | <mark>sold out</mark> | " + "showID: " + response.shows[i].showID + "<br>";
                 }
                 else {
-                    list = list + response.shows[i].showName + ": time" + response.shows[i].showTime + ": date  " + response.shows[i].showDate + "<mark> available </mark>" + "showID" + response.shows[i].showID + "<br>";
+                    list = list + response.shows[i].showName + ": time: " + response.shows[i].showTime + " | date:  " + response.shows[i].showDate + " | <mark>available</mark> | " + "showID: " + response.shows[i].showID + "<br>";
                 }
             }
             console.log(list);

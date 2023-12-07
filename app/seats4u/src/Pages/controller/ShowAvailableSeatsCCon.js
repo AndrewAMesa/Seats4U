@@ -2,7 +2,7 @@ import { post } from "./Api"
 
 export function showAvailableSeatsCCon(type) {
     // potentially modify the model
-    let showID = document.getElementById("showID");
+    let showID = document.getElementById("search");
 
      // prepare payload for the post
     let data = {'showID': showID.value,
@@ -17,7 +17,8 @@ export function showAvailableSeatsCCon(type) {
         if (JSON.parse(response.statusCode) == "200") {
             console.log(JSON.parse(response.statusCode));
             let list = ''
-            for (let i = 0; i < response.shows.length; i++){
+            for (let i = 0; i < response.shows.length; i++){ //list of all seats in a show 
+                
                 list = list + String.fromCharCode('A'.charCodeAt(0) + response.shows[i].rowNum) + (response.shows[i].colNum + 1) +  ", ";
             }
             document.getElementById("seatInfo").value = list
