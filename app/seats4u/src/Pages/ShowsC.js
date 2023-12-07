@@ -46,7 +46,7 @@ const ShowsC = () => {
       {" "}
       <button className='showAvailableSeatsRow' data-testid="showAvailableSeatRows" onClick={(e) => showAvailableSeatsRow()} >Show Available Seats by Row</button>
       <li type="none"></li>
-
+      Seat Info: <input id="seatInfo" readOnly style={{ width: '800px' }}/>
       {/* result: <header id="result" onLoad={(e) => setDefaultResult()}  /> */}
 
 

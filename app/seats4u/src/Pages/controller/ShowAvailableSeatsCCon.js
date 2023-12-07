@@ -20,9 +20,9 @@ export function showAvailableSeatsCCon(type) {
             for (let i = 0; i < response.shows.length; i++){
                 list = list + String.fromCharCode('A'.charCodeAt(0) + response.shows[i].rowNum) + response.shows[i].colNum +  ", ";
             }
-            document.getElementById("result").value = list
+            document.getElementById("seatInfo").value = list
         } else {
-            document.getElementById("result").value = JSON.parse(response.error);
+            document.getElementById("seatInfo").value = JSON.parse(response.error);
         }
     };
 

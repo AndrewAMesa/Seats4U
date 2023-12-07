@@ -17,6 +17,10 @@ export function showVenueVMCon() {
             console.log(response.show[0].venueName);
             document.getElementById("venueName").value = response.show[0].venueName
             document.getElementById("location").value = response.show[0].location
+            document.getElementById("numRows").value = "Rows: " + response.show[0].rowNum
+            document.getElementById("leftCols").value = "Left Columns: " + response.show[0].colNum
+            document.getElementById("centerCols").value = "Center Columns: " + response.show[1].colNum
+            document.getElementById("rightCols").value = "Right Columns: " + response.show[2].colNum
         } else {
             document.getElementById("result").value = JSON.parse(response.error);
         }
