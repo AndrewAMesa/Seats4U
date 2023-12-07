@@ -45,6 +45,9 @@ const ShowsVM = () => {
       <input id='defaultPrice' value={defaultPrice} placeholder='default price' />
       <li type="none"></li>
       result: <input id="result" readOnly style={{ width: '800px' }} />
+      <li type="none"></li>
+      <div id="showReportVM"></div>
+
 
     </div>
   );
@@ -76,7 +79,7 @@ function activateShow() {
 }
 
 function generateShowReportVM() {
-
+  generateShowReportVM();
 }
 
 function listShowsVM() {

@@ -29,7 +29,9 @@ export function listActiveShowSCCon(requestRedraw) {
             const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${response.shows[i].showDate}, showTime: ${response.shows[i].showTime}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}`;
             list = list + showInfo;
         }
+        document.getElementById("activeShows").innerHTML = list
         document.getElementById("result").value = list
+
 
     })
     .catch(function (error) {

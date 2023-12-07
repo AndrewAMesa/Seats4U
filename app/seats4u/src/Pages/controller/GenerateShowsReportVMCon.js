@@ -47,7 +47,7 @@ export function generateShowsReportVMCon(requestRedraw) {
                 list = list + showInfo;
 
             }
-            document.getElementById("result").value = list
+            document.getElementById("showReportVM").innerHTML = list
         } else {
             document.getElementById("result").value = JSON.parse(response.error);
         }

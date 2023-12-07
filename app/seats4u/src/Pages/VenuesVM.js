@@ -46,7 +46,8 @@ const VenuesVM = () => {
       <li type="none"></li>
       <input id="venueLayout" readOnly style={{ width: '1000px' }} />
       <li type="none"></li>
-      {/* {parse(test)} */}
+
+      <div id="result"></div>
 
     </div >
   );

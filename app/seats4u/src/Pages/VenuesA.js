@@ -38,6 +38,8 @@ const VenuesA = () => {
       <input id='rightCols' value={rightCols} placeholder='#right columns' />
       <li type="none"></li>
       result: <input id="result" readOnly style={{ width: '1000px' }} />
+      <li type="none"></li>
+      <div id="venuesList"></div>
     </div >
 
 

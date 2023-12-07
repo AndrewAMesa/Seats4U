@@ -43,8 +43,14 @@ const ShowsC = () => {
       {" "}
       <button className='showAvailableSeatsRow' data-testid="showAvailableSeatRows" onClick={(e) => showAvailableSeatsRow()} >Show Available Seats by Row</button>
       <li type="none"></li>
-      Seat Info: <input id="seatInfo" readOnly style={{ width: '800px' }}/>
+      Seat Info: <input id='seatInfoBar' readOnly style = {{ width: '800px' }} />
+      
+      
+      <div id="seatInfo"> </div>
       <li type="none"></li>
+      <div id="activeShows"> </div>
+      <li type="none"></li>
+
 
       <div id="result"> </div>
      
