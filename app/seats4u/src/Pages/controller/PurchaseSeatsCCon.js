@@ -16,7 +16,7 @@ export function purchaseSeatsCCon(type) {
     // Loop through each seat in seatArray
     for (let i = 0; i < seatArray.length; i++) {
         // Extract column and letter information
-        let column = parseInt(seatArray[i].substring(1), 10);
+        let column = parseInt(seatArray[i].substring(1), 10) - 1;
         let letter = seatArray[i].charAt(0);
 
         // Convert letter to a numeric row value

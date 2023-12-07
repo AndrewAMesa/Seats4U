@@ -150,7 +150,7 @@ exports.handler = async (event) => {
             if (await updateSeat(event.showID, event.seats[i].colNum, event.seats[i].rowNum)){
                 totalPrice = totalPrice + await getSeatPrice(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
                 let tempSeat = String.fromCharCode(event.seats[i].rowNum + 'A'.charCodeAt(0))
-                seatString = seatString + (tempSeat + event.seats[i].colNum) + ", "
+                seatString = seatString + (tempSeat + (event.seats[i].colNum + 1)) + ", "
                 await updateShow(event.showID)
             }
             await updateSeatEnd(event.showID, event.seats[i].colNum, event.seats[i].rowNum);

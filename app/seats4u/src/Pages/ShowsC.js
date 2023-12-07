@@ -79,15 +79,18 @@ function showAvailableSeatsPrice() {
 
 function showAvailableSeatsRow() {
   showAvailableSeatsCCon("row")
-
 }
 
 function listShowsByShow(type) {
-  searchShowsCCon(type)
+  if (document.getElementById('search').value != "") {
+    searchShowsCCon(type)
+  }
 }
 
 function listShowsByVenue(type) {
-  searchShowsCCon(type)
+  if (document.getElementById('search').value != "") {
+    searchShowsCCon(type)
+  }
 }
 
 export default ShowsC;
