@@ -1,6 +1,6 @@
 import { get } from "./Api"
 
-export function listActiveShowSCCon(requestRedraw) {
+export function listAllActiveShowsCCon(requestRedraw) {
     
      get('/listActiveShowsC')
      // Callback function to handle the response from the server

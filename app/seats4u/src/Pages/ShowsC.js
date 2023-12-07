@@ -3,6 +3,7 @@ import { createShowVMCon } from './controller/CreateShowVMCon';
 import ConsumerNavBar from '../Pages/Components/ConsumerNavBar.js';
 import { searchShowsCCon } from './controller/SearchShowsCCon';
 import { showAvailableSeatsCCon } from './controller/ShowAvailableSeatsCCon';
+import {listAllActiveShowsCCon} from  './controller/ListActiveShowsCCon';
 import { purchaseSeatsCCon } from './controller/PurchaseSeatsCCon';
 import { listActiveShowSCCon } from './controller/ListActiveShowsCCon';
 import parse from 'html-react-parser';
@@ -67,7 +68,7 @@ const ShowsC = () => {
 // }
 
 function listAllActiveShows() {
-  listActiveShowSCCon()
+  listAllActiveShowsCCon()
 }
 
 
