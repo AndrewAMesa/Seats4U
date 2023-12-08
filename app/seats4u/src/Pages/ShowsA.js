@@ -2,6 +2,7 @@ import React from 'react';
 import { createShowVMCon } from './controller/CreateShowVMCon';
 import AdminNavBar from '../Pages/Components/AdminNavBar.js';
 import {generateShowsReportACon} from './controller/GenerateShowsReportACon.js';
+import { deleteShowACon } from './controller/DeleteShowsACon.js';
 
 var token;
 var search;
@@ -10,25 +11,24 @@ var showName;
 var showDate;
 var showTime;
 var defaultPrice;
+var showID;
 
 const ShowsA = () => {
 
   return (
     <div className="ShowsA">
       <AdminNavBar />
-      <button className='listShowsA' data-testid="listShowsA" onClick={(e) => listShowsA()} >List Shows</button>
-      {" "}
       <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "}
-      <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
-      {" "}
       <button className='generateShowReportA' data-testid="generateShowReportA" onClick={(e) => generateShowReportA()} >Generate Show Report</button>
-      {" | "} <input id='search' value={search} placeholder='Search ShowsA' />
+      {" | "} <input id='search' value={search} placeholder='Search Shows' />
 
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
       <li type="none"></li>
       <input id='venueName' value={venueName} placeholder='venue name' />
+      <li type="none"></li>
+      <input id='showID' value={showID} placeholder='show ID' />
       <li type="none"></li>
       <input id='showName' value={showName} placeholder='show name' />
       <li type="none"></li>
@@ -77,6 +77,7 @@ function listShowsA() {
 }
 
 function deleteShow() {
+  deleteShowACon();
 }
 
 export default ShowsA;
