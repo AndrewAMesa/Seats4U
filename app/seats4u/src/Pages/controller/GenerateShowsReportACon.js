@@ -8,7 +8,7 @@ export function generateShowsReportACon(requestRedraw) {
      let data = {'adminToken': adminToken.value}
     
     // Initialize an empty string for the table HTML
-    let table = '<table border="1"><tr><th>Name</th><th>ShowID</th><th>isActive</th><th>isSoldOut</th><th>ShowDate</th><th>ShowTime</th><th>DefaultPrice</th><th>AvailableSeatsCounter</th><th>Revenue</th><th>Location</th></tr>';
+    let table = '<table border="1"><tr><th>Name</th><th>ShowID</th><th>isActive</th><th>isSoldOut</th><th>ShowDate</th><th>ShowTime</th><th>DefaultPrice</th><th>AvailableSeatsCounter</th><th>Revenue</th><th>Venue</th><th>Location</th></tr>';
 
      // Callback function to handle the response from the server
      const handler = (response) => {
@@ -63,6 +63,7 @@ export function generateShowsReportACon(requestRedraw) {
                 <td>${response.venues[i].defaultPrice}</td>
                 <td>${response.venues[i].availableSeatsCounter}</td>
                 <td>${response.venues[i].revenue}</td>
+                <td>${response.venues[i].venueName}</td>
                 <td>${response.venues[i].location}</td>
                 </tr>
   `             ;

@@ -39,7 +39,7 @@ export function searchShowsCCon(type) {
                 const dateObject = new Date(mysqlDate);
 
                 // Extract day, month, and year
-                const day = dateObject.getDate();
+                const day = dateObject.getDate() + 1;
                 const month = dateObject.getMonth() + 1; // Months are zero-indexed, so we add 1
                 const year = dateObject.getFullYear();
 
