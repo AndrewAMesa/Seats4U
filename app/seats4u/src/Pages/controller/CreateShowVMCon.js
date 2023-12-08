@@ -28,7 +28,8 @@ export function createShowVMCon() {
             document.getElementById("result").value = "Show created!   Show Name:" + showName.value + 
             "   Date: " + showDate.value + 
             "   Time: " + showTime.value +
-            "   Default Price: " + defaultPrice.value;
+            "   Default Price: " + defaultPrice.value +
+            "   Show ID: " + JSON.parse(response.showID);
         } else {
             document.getElementById("result").value = JSON.parse(response.error);
         }
