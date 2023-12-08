@@ -2,10 +2,13 @@ import { post } from "./Api"
 
 export function generateShowsReportVMCon(requestRedraw) {
     // potentially modify the model
-    let adminToken = document.getElementById("token");
+    let venueToken = document.getElementById("token");
 
      // prepare payload for the post
-     let data = {'token': adminToken.value}
+     let data = {'token': venueToken.value}
+
+       // Initialize an empty string for the table HTML
+       let table = '<table border="1"><tr><th>Name</th><th>ShowID</th><th>isActive</th><th>isSoldOut</th><th>ShowDate</th><th>ShowTime</th><th>DefaultPrice</th><th>AvailableSeatsCounter</th><th>Revenue</th><th>Location</th></tr>';
 
      // Callback function to handle the response from the server
      const handler = (response) => {
@@ -27,27 +30,48 @@ export function generateShowsReportVMCon(requestRedraw) {
                 console.log(response.venues[i].availableSeatsCounter);
                 console.log(response.venues[i].venueName);
                 console.log(response.venues[i].revenue);
-                console.log(response.location[i].revenue);
+                console.log(response.venues[i].location);
 
                 // Formatting the response string for each show
-                const isActive = response.shows[i].isActive;
-                const soldOut = response.shows[i].soldOut;
+                const isActive = response.venues[i].isActive;
+                const soldOut = response.venues[i].soldOut;
                 // Convert SQL date and time strings to JavaScript Date object
-                const dateObject = new Date(`${response.shows[i].showDate}T${response.shows[i].showTime}`);
-    
-                // Format date and time as strings
-                const formattedDate = dateObject.toLocaleDateString();
-                const formattedTime = dateObject.toLocaleTimeString();
-    
-                // Display the formatted date and time
-                console.log("Formatted Date: " + formattedDate);
-                console.log("Formatted Time: " + formattedTime);
-    
-                const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${formattedDate}, showTime: ${formattedTime}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}, Revenue: ${response.shows[i].revenue}, Location: ${response.shows[i].location} `;
-                list = list + showInfo;
+                //const dateString = response.venues[i].showDate;
+                const mysqlDate = response.venues[i].showDate;
+                const dateObject = new Date(mysqlDate);
+
+                // Extract day, month, and year
+                const day = dateObject.getDate();
+                const month = dateObject.getMonth() + 1; // Months are zero-indexed, so we add 1
+                const year = dateObject.getFullYear();
+
+                // Create a formatted date string
+                const dateString = `${month}-${day}-${year}`;
+                const timeString = response.venues[i].showTime;
+             
+                // const showInfo = `${response.venues[i].showName}: ShowID: ${response.venues[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${dateString}, showTime: ${timeString}, defaultPrice: ${response.venues[i].defaultPrice}, availableSeatsCounter: ${response.venues[i].availableSeatsCounter}, Revenue: ${response.venues[i].revenue}  Location: ${response.venues[i].location}\n`;
+                // list = list + `<div>${showInfo}</div>`;
+
+                const showInfo = `
+                <tr>
+                <td>${response.venues[i].showName}</td>
+                <td>${response.venues[i].showID}</td>
+                <td>${isActive ? "active" : "inactive"}</td>
+                <td>${soldOut ? "yes" : "no"}</td>
+                <td>${dateString}</td>
+                <td>${timeString}</td>
+                <td>${response.venues[i].defaultPrice}</td>
+                <td>${response.venues[i].availableSeatsCounter}</td>
+                <td>${response.venues[i].revenue}</td>
+                <td>${response.venues[i].location}</td>
+                </tr>
+  `             ;
+
+                // Append the showInfo to the table
+                table += showInfo;
 
             }
-            document.getElementById("showReportVM").innerHTML = list
+            document.getElementById("showReportVM").innerHTML = table
         } else {
             document.getElementById("result").value = JSON.parse(response.error);
         }
