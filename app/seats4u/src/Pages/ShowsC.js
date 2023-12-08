@@ -19,9 +19,9 @@ const ShowsC = () => {
   return (
     <div className="ShowsC">
       <ConsumerNavBar />
-      <button className='listShowsByVenue' data-testid="listShowsByVenue" onClick={(e) => listShowsByVenue(0)} >List Shows by Venue</button>
+      <button className='listShowsByVenue' data-testid="listShowsByVenue" onClick={(e) => listShowsByVenue(0)} >Search Shows by Venue</button>
       {" "}
-      <button className='listShowsByShow' data-testid="listShowsByShowC" onClick={(e) => listShowsByShow(1)} >List Shows by Show</button>
+      <button className='listShowsByShow' data-testid="listShowsByShowC" onClick={(e) => listShowsByShow(1)} >Search Shows by Show</button>
       {" "}
       {/* <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "} */}
@@ -31,7 +31,7 @@ const ShowsC = () => {
       {" "}
       <button className='purchaseSeats' data-testid="purchaseSeats" onClick={(e) => purchaseSeats()} >Purchase Seats</button>
       {" "}
-      {" | "} <input id='search' value={search }  style = {{ width: '210px' }} placeholder='List Shows (venue or show name)' />
+      {" | "} <input id='search' value={search }  style = {{ width: '230px' }} placeholder='Search Shows (venue or show name)' />
       {" | "} <input id='showID' value={seats} style = {{ width: '215px' }} placeholder='Enter ShowID for Seats' />
       {" | "} <input id='purchaseSeats' value={seats} style = {{ width: '215px' }} placeholder='Seats to Purchase (EX: A1,C1,...)' />
       <li type="none"></li>

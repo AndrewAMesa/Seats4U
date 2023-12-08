@@ -16,10 +16,6 @@ const VenuesA = () => {
   return (
     <div className="VenuesA">
       <AdminNavBar />
-      <button className='createVenue' data-testid="createVenue" onClick={(e) => createVenue()} >Create Venue</button>
-      {" "}
-      <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>
-      {" "}
       <button className='listVenuesA' data-testid="listVenuesA" onClick={(e) => listVenuesA()} >List Venues</button>
 
       <li type="none"></li>
