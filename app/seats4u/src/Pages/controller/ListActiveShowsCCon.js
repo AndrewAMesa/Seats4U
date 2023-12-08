@@ -17,20 +17,28 @@ export function listActiveShowsCCon(requestRedraw) {
             console.log(response.shows[i].availableSeatsCounter);
             console.log(response.shows[i].VenueName);
 
+            const mysqlDate = response.shows[i].showDate;
+            const dateObject = new Date(mysqlDate);
 
+            // Extract day, month, and year
+            const day = dateObject.getDate();
+            const month = dateObject.getMonth() + 1; // Months are zero-indexed, so we add 1
+            const year = dateObject.getFullYear();
+
+            // Create a formatted date string
+            const dateString = `${month}-${day}-${year}`;
+            const timeString = response.shows[i].showTime;
 
             // Formatting the response string for each show
             const isActive = response.shows[i].isActive;
             const soldOut = response.shows[i].soldOut;
             // Convert SQL date and time strings to JavaScript Date object
-            const dateObject = new Date(`${response.shows[i].showDate}T${response.shows[i].showTime}`);
 
-
-            const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${response.shows[i].showDate}, showTime: ${response.shows[i].showTime}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}`;
+            const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${dateString}, showTime: ${timeString}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}`;
             if (response.shows[i].soldOut == 1) {
-                list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + response.shows[i].showDate + " | <mark>sold out</mark> | " + "showID: " + response.shows[i].showID + "<br>";
+                list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + dateString + " | <mark>sold out</mark> | " + "showID: " + response.shows[i].showID + "<br>";
                 } else {
-                list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + response.shows[i].showDate + " | <mark>available</mark> | " + "showID: " + response.shows[i].showID + "<br>";
+                list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + dateString + " | <mark>available</mark> | " + "showID: " + response.shows[i].showID + "<br>";
             }
         }
         //document.getElementById("activeShows").innerHTML = ""
