@@ -8,8 +8,6 @@ const AdminNavBar = () => {
             <Link to="/VenuesA">Venues</Link>
             {" | "}
             <Link to="/ShowsA">Shows</Link>
-            {" | "}
-            <Link to="/EditBlocksA">Edit Blocks</Link>
          </li>
       </div>
    );
