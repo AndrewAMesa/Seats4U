@@ -54,8 +54,7 @@ const ShowsVM = () => {
 };
 
 function createShow() {
-  if (document.getElementById('token').value != "" && document.getElementById('venueName').value != "" &&
-    document.getElementById('showName').value != "" && document.getElementById('showDate').value != "" &&
+  if (document.getElementById('token').value != "" && document.getElementById('showName').value != "" && document.getElementById('showDate').value != "" &&
     document.getElementById('showTime').value != "" && document.getElementById('defaultPrice').value != "") {
 
     console.log("token: " + document.getElementById('token').value);

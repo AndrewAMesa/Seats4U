@@ -15,16 +15,18 @@ exports.handler = async (event) => {
 
     // Log the token from the event
     // console.log(event.token)
-
+    let venueName = undefined
     // Validates if that token already exists
-    let tokenAndVenueExists = (token, name) => {
+    let tokenAndVenueExists = (token) => {
         return new Promise((resolve, reject) => {
-            pool.query("SELECT * FROM Venues WHERE venueToken=? && venueName=?", [token, name], (error, rows) => {
+            pool.query("SELECT * FROM Venues WHERE venueToken=?", [token], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }
                 // console.log(rows)
                 if ((rows) && (rows.length >= 1)) {
+                    console.log(rows)
+                    venueName = rows[0].venueName
                     return resolve(true);
                 } else {
                     errorMessage = "Token or venue name does not exist"
@@ -33,7 +35,7 @@ exports.handler = async (event) => {
             });
         });
     };
-
+    
     // Validates if that show already exists
     let showExists = (showName, date, time, venueName) => {
         return new Promise((resolve, reject) => {
@@ -53,10 +55,10 @@ exports.handler = async (event) => {
     };
 
     let response = undefined;
-    const validToken = await tokenAndVenueExists(event.venueToken, event.venueName);
-    const alreadyExists = await showExists(event.showName, event.showDate, event.showTime, event.venueName);
+    const validToken = await tokenAndVenueExists(event.venueToken);
+    const alreadyExists = await showExists(event.showName, event.showDate, event.showTime, venueName);
     // console.log("checking")
-
+    console.log("venueName" + venueName)
     let tempShowID = 0;
 
     // If the show doesn't exist and the token is valid, add the show to the database
@@ -79,7 +81,7 @@ exports.handler = async (event) => {
             });
         }
 
-        let size = await findVenueSize(event.venueName);
+        let size = await findVenueSize(venueName);
         console.log(size)
         const columnCount = size.reduce((sum, row) => sum + row.colNum, 0);
         const rowCount = size[0].rowNum;
@@ -106,7 +108,7 @@ exports.handler = async (event) => {
         }
 
         // Execute the show creation function
-        let venueCreationResult = await createShow(event.showName, event.showDate, event.showTime, event.defaultPrice, event.venueName);
+        let venueCreationResult = await createShow(event.showName, event.showDate, event.showTime, event.defaultPrice, venueName);
 
         // Adds seats to the database
         let addSeat = (showID, rowNum, columnNum, price, section) => {
@@ -142,7 +144,8 @@ exports.handler = async (event) => {
 
         if (venueCreationResult == true) {
             response = {
-                statusCode: 200
+                statusCode: 200,
+                showID: tempShowID
             }
         }
     } else {

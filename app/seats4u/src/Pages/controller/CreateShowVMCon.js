@@ -5,7 +5,6 @@ import { post } from "./Api";
 export function createShowVMCon() {
     // Retrieving input values from HTML elements
     let venueToken = document.getElementById("token");
-    let venueName = document.getElementById("venueName");
     let showName = document.getElementById("showName");
     let showDate = document.getElementById("showDate");
     let showTime = document.getElementById("showTime");
@@ -14,7 +13,6 @@ export function createShowVMCon() {
     // Prepare payload for the post request
     let data = {
         'venueToken': venueToken.value,
-        'venueName': venueName.value,
         'showName': showName.value,
         'showDate': showDate.value,
         'showTime': showTime.value,
