@@ -24,6 +24,8 @@ const VenuesVM = () => {
       {" "}
       <button className='showVenueVM' data-testid="showVenueVM" onClick={(e) => showVenueVM()} >Show Venue</button>
 
+      <button className='showVenueVM2' data-testid="showVenueVM2" onClick={(e) => showVenueVM()} >Show Venue2</button>
+
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
       <li type="none"></li>
