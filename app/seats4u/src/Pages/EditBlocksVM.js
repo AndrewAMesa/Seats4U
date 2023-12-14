@@ -10,7 +10,9 @@ import { listBlocksVMCon } from './controller/ListBlocksVMCon.js';
 
 function createBlock()
 {
-  createBlockVMCon()
+  if (document.getElementById('token').value != "" && document.getElementById('showID').value != ""){
+    createBlockVMCon()
+  }
 }
 
 function deleteBlock()
@@ -23,7 +25,9 @@ function deleteBlock()
 
 function listBlocks()
 {
-  listBlocksVMCon()
+  if (document.getElementById('token').value != "" && document.getElementById('showID').value != ""){
+    listBlocksVMCon()
+  }
 }
 
 var venueToken;

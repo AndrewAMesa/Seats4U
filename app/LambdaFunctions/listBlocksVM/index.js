@@ -44,7 +44,7 @@ exports.handler = async (event) => {
                 if ((rows) && (rows.length >= 1)) {
                     return resolve(true);
                 } else {
-                    errorMessage = "ShowID does not exist or show is active";
+                    errorMessage = "ShowID does not exist";
                     return resolve(false);
                 }
             });
