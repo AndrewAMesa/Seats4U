@@ -54,7 +54,7 @@ exports.handler = async (event) => {
                         if ((rows) && (rows.length >= 1)) {
                             if (rows[0].section == 0) {
                                 region = "left"
-                            } else if (rows.section[0] == 1) {
+                            } else if (rows[0].section == 1) {
                                 region = "center"
                             } else {
                                 region = "right"

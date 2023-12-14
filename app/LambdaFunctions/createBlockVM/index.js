@@ -147,7 +147,7 @@ exports.handler = async (event) => {
         if (createdBlock) {
             response = {
                 statusCode: 200,
-                showID: JSON.stringify(blockID)
+                blockID: JSON.stringify(blockID)
             }
         }
     } else {

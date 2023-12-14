@@ -38,7 +38,7 @@ exports.handler = async (event) => {
     let showExists = (showID) => {
         return new Promise((resolve, reject) => {
             // Check if the showID exists and is not active in the Shows table
-            pool.query("SELECT * FROM Shows WHERE showID=? AND isActive=0", [showID], (error, rows) => {
+            pool.query("SELECT * FROM Shows WHERE showID=?", [showID], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }
@@ -64,7 +64,7 @@ exports.handler = async (event) => {
         let getBlocks = (showID) => {
             return new Promise((resolve, reject) => {
                 // Retrieve all blocks for the specified showID
-                pool.query("SELECT * FROM Blocks WHERE showID=?", [showID], (error, rows) => {
+                pool.query("SELECT * FROM Blocks JOIN Shows ON Blocks.showID = Shows.showID WHERE Blocks.showID=?", [showID], (error, rows) => {
                     if (error) {
                         return reject(error);
                     }
