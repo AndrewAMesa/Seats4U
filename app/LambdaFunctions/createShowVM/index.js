@@ -13,39 +13,34 @@ exports.handler = async (event) => {
 
     let errorMessage = "error";
 
-    // Log the token from the event
-    // console.log(event.token)
-    let venueName = undefined
-    // Validates if that token already exists
+    // Token validation: Check if the token exists and retrieve the associated venue name
+    let venueName = undefined;
     let tokenAndVenueExists = (token) => {
         return new Promise((resolve, reject) => {
             pool.query("SELECT * FROM Venues WHERE venueToken=?", [token], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }
-                // console.log(rows)
                 if ((rows) && (rows.length >= 1)) {
-                    console.log(rows)
-                    venueName = rows[0].venueName
+                    venueName = rows[0].venueName;
                     return resolve(true);
                 } else {
-                    errorMessage = "Token or venue name does not exist"
+                    errorMessage = "Token or venue name does not exist";
                     return resolve(false);
                 }
             });
         });
     };
-    
-    // Validates if that show already exists
+
+    // Show existence validation: Check if the show with the same details already exists at the venue
     let showExists = (showName, date, time, venueName) => {
         return new Promise((resolve, reject) => {
             pool.query("SELECT * FROM Shows WHERE showName=? AND showDate=? AND showTime=? AND venueName=?", [showName, date, time, venueName], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }
-                // console.log(rows)
                 if ((rows) && (rows.length >= 1)) {
-                    errorMessage = "Exact show already exists at venue"
+                    errorMessage = "Exact show already exists at the venue";
                     return resolve(true);
                 } else {
                     return resolve(false);
@@ -57,15 +52,12 @@ exports.handler = async (event) => {
     let response = undefined;
     const validToken = await tokenAndVenueExists(event.venueToken);
     const alreadyExists = await showExists(event.showName, event.showDate, event.showTime, venueName);
-    // console.log("checking")
-    console.log("venueName" + venueName)
+
     let tempShowID = 0;
 
     // If the show doesn't exist and the token is valid, add the show to the database
     if (!alreadyExists && validToken) {
-        // console.log("in loop")
-
-                // Finds the venue 
+        // Venue size retrieval: Find the venue size based on sections
         let findVenueSize = (venueName) => {
             return new Promise((resolve, reject) => {
                 pool.query("SELECT region, rowNum, colNum FROM Sections WHERE venueName=?", [venueName], (error, rows) => {
@@ -79,15 +71,17 @@ exports.handler = async (event) => {
                     }
                 });
             });
-        }
+        };
 
+        // Retrieve venue size
         let size = await findVenueSize(venueName);
-        console.log(size)
+
+        // Calculate total seats
         const columnCount = size.reduce((sum, row) => sum + row.colNum, 0);
         const rowCount = size[0].rowNum;
-        const totalSeats = columnCount * rowCount
+        const totalSeats = columnCount * rowCount;
 
-        // Adds show to the database
+        // Show creation: Add the show to the database
         let createShow = (showName, showDate, showTime, price, venueName) => {
             return new Promise((resolve, reject) => {
                 pool.query("INSERT into Shows(showName, showDate, showTime, defaultPrice, availableSeatsCounter, venueName) VALUES(?,?,?,?,?,?);", [showName, showDate, showTime, price, totalSeats, venueName], (error, rows) => {
@@ -95,11 +89,8 @@ exports.handler = async (event) => {
                         return reject(error);
                     }
                     if ((rows) && (rows.affectedRows >= 1)) {
-                        // console.log(rows)
                         tempShowID = rows.insertId;
-                        // console.log(rows)
                         return resolve(true);
-
                     } else {
                         return resolve(false);
                     }
@@ -110,17 +101,15 @@ exports.handler = async (event) => {
         // Execute the show creation function
         let venueCreationResult = await createShow(event.showName, event.showDate, event.showTime, event.defaultPrice, venueName);
 
-        // Adds seats to the database
+        // Add seats to the database
         let addSeat = (showID, rowNum, columnNum, price, section) => {
             return new Promise((resolve, reject) => {
-                pool.query("INSERT into Seats(showID, rowNum, colNum, price, section) VALUES(?,?,?,?,?);", [showID, rowNum, columnNum,price, section], (error, rows) => {
+                pool.query("INSERT into Seats(showID, rowNum, colNum, price, section) VALUES(?,?,?,?,?);", [showID, rowNum, columnNum, price, section], (error, rows) => {
                     if (error) {
                         return reject(error);
                     }
                     if (rows) {
-                        // console.log("did it")
                         return resolve(true);
-
                     } else {
                         return resolve(false);
                     }
@@ -128,13 +117,12 @@ exports.handler = async (event) => {
             });
         }
 
-        // console.log(columnCount)
         // Loop to add seats
-        let section = 0
+        let section = 0;
         for (let i = 0; i < columnCount; i++) {
-            if (i + 1 > size[0].colNum && i < size[0].colNum + 1){
+            if (i + 1 > size[0].colNum && i < size[0].colNum + 1) {
                 section++;
-            } else if (i + 1 > size[1].colNum + size[0].colNum && i < size[0].colNum + size[1].colNum + 1){
+            } else if (i + 1 > size[1].colNum + size[0].colNum && i < size[0].colNum + size[1].colNum + 1) {
                 section++;
             }
             for (let j = 0; j < rowCount; j++) {
@@ -156,6 +144,6 @@ exports.handler = async (event) => {
         };
     }
 
-    pool.end();   // done with DB
+    pool.end();   // Done with DB
     return response;
 };

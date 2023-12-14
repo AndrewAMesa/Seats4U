@@ -12,16 +12,14 @@ exports.handler = async (event) => {
 
     let errorMessage = "error";
 
-    console.log(event.name);
-
     // Validates if that venue name already exists
     let venueNameExists = (name) => {
         return new Promise((resolve, reject) => {
+            // Query to check if the venue name exists
             pool.query("SELECT * FROM Venues WHERE venueName=?", [name], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }
-                console.log(rows);
                 if ((rows) && (rows.length >= 1)) {
                     errorMessage = "Venue name already exists";
                     return resolve(true);
@@ -34,7 +32,6 @@ exports.handler = async (event) => {
 
     let response = undefined;
     const alreadyExists = await venueNameExists(event.venueName);
-    console.log("checking");
 
     if (!alreadyExists) {
         let token = '';
@@ -45,21 +42,20 @@ exports.handler = async (event) => {
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             token = '';
 
+            // Generate a random token
             for (let i = 0; i < 20; i++) {
                 const randomIndex = Math.floor(Math.random() * characters.length);
                 token += characters.charAt(randomIndex);
             }
 
-            console.log(token);
-
             // Validates if a token already exists
             let tokenExists = (token) => {
                 return new Promise((resolve, reject) => {
+                    // Query to check if the token exists
                     pool.query("SELECT * FROM Venues WHERE venueToken=?", [token], (error, rows) => {
                         if (error) {
                             return reject(error);
                         }
-                        console.log(token);
                         if ((rows) && (rows.length >= 1)) {
                             return resolve(true);
                         } else {
@@ -81,6 +77,7 @@ exports.handler = async (event) => {
         // Adds venue to the database
         let createVenue = (token, name, location) => {
             return new Promise((resolve, reject) => {
+                // Query to insert venue details into the database
                 pool.query("INSERT into Venues(venueToken, venueName, location) VALUES(?,?,?);", [token, name, location], (error, rows) => {
                     if (error) {
                         return reject(error);
@@ -95,8 +92,9 @@ exports.handler = async (event) => {
         };
 
         // Creates sections for the venue
-        let createSections = ( region, venueName, rows, columns) => {
+        let createSections = (region, venueName, rows, columns) => {
             return new Promise((resolve, reject) => {
+                // Query to insert section details into the database
                 pool.query("INSERT into Sections(region, venueName, rowNum, colNum) VALUES(?,?,?,?);", [region, venueName, rows, columns], (error, rows) => {
                     if (error) {
                         return reject(error);
@@ -116,6 +114,7 @@ exports.handler = async (event) => {
         await createSections("center", event.venueName, event.rowNum, event.centerColumns);
         await createSections("right", event.venueName, event.rowNum, event.rightColumns);
 
+        // Successful response
         response = {
             statusCode: 200,
             token: JSON.stringify(token),

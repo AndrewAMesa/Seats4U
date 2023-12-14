@@ -13,18 +13,16 @@ exports.handler = async (event) => {
 
     let errorMessage = "error";
 
-    // Log the token from the event
-    // console.log(event.token)
     // Validates if that token already exists
     let tokenExists = (token) => {
         return new Promise((resolve, reject) => {
+            // SQL query to check if the venue token exists
             pool.query("SELECT * FROM Venues WHERE venueToken=?", [token], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }
                 // If token exists, return true, else set an error message and return false
                 if ((rows) && (rows.length >= 1)) {
-                    console.log(rows);
                     return resolve(true);
                 } else {
                     errorMessage = "Token does not exist";
@@ -34,9 +32,10 @@ exports.handler = async (event) => {
         });
     };
 
-    // Validates if that show exists
+    // Validates if that show exists and is not active
     let showExists = (showID) => {
         return new Promise((resolve, reject) => {
+            // SQL query to check if the showID exists and is not active
             pool.query("SELECT * FROM Shows WHERE showID=? AND isActive=0", [showID], (error, rows) => {
                 if (error) {
                     return reject(error);
@@ -77,25 +76,26 @@ exports.handler = async (event) => {
     const endRowNumber = event.rowEnd.charCodeAt(0) - 'A'.charCodeAt(0);
 
     let response = undefined;
+
+    // Check if the token is valid, the show exists, and the block does not overlap with another one
     const validToken = await tokenExists(event.venueToken);
     const showIDExists = await showExists(event.showID);
     const blockInvalid = await blockIntersects(event.showID, event.region, startRowNumber, endRowNumber);
-    let totalSeats = 0
-    let blockID = undefined
+    let totalSeats = 0;
+    let blockID = undefined;
+
     // If the show does exist and the token is valid, add the block to the database
     if (showIDExists && validToken && !blockInvalid) {
-        // Finds the venue
-
         // Create a new block in the database
         let createBlock = (showID, price, region, rowStart, rowEnd, totalSeats) => {
             return new Promise((resolve, reject) => {
+                // SQL query to insert a new block
                 pool.query("INSERT into Blocks(price, showID, region, rowStart, rowEnd, seatsAvailable) VALUES(?,?,?,?,?,?);", [price, showID, region, rowStart, rowEnd, totalSeats], (error, rows) => {
                     if (error) {
                         return reject(error);
                     }
                     // If the block is created successfully, return true, else return false
                     if ((rows) && (rows.affectedRows >= 1)) {
-                        console.log("Block successfully created");
                         blockID = rows.insertId;
                         return resolve(true);
                     } else {
@@ -108,13 +108,14 @@ exports.handler = async (event) => {
         // Update seat prices for each row in the new block
         let updateSeatPrice = (showID, price, region, row) => {
             return new Promise((resolve, reject) => {
+                // SQL query to update seat prices
                 pool.query("UPDATE Seats SET price=? WHERE section=? AND rowNum=? AND showID=?", [price, region, row, showID], (error, rows) => {
                     if (error) {
                         return reject(error);
                     }
                     // If seat price is updated successfully, return true, else return false
                     if ((rows) && (rows.affectedRows >= 1)) {
-                        totalSeats += rows.affectedRows
+                        totalSeats += rows.affectedRows;
                         return resolve(true);
                     } else {
                         return resolve(false);
@@ -124,31 +125,28 @@ exports.handler = async (event) => {
         }
 
         // Map region string to a numerical value
-        let tempRegion = -1
+        let tempRegion = -1;
         if (event.region == "left") {
-            tempRegion = 0
+            tempRegion = 0;
         } else if (event.region == "center") {
-            tempRegion = 1
+            tempRegion = 1;
         } else {
-            tempRegion = 2
+            tempRegion = 2;
         }
 
-        
         // Update seat prices for each row in the new block
         for (let i = startRowNumber; i < endRowNumber + 1; i++) {
-            await updateSeatPrice(event.showID, event.price, tempRegion, i)
+            await updateSeatPrice(event.showID, event.price, tempRegion, i);
         }
-
 
         // Create a new block in the database
         let createdBlock = await createBlock(event.showID, event.price, event.region, startRowNumber, endRowNumber, totalSeats);
 
-   
         if (createdBlock) {
             response = {
                 statusCode: 200,
                 blockID: JSON.stringify(blockID)
-            }
+            };
         }
     } else {
         // If the show already exists or the token is invalid, return an error response
