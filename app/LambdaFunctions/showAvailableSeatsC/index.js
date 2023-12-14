@@ -44,11 +44,11 @@ exports.handler = async (event) => {
     
     let queryString = undefined
     if (event.type == "section"){
-        queryString = "SELECT rowNum, colNum, isSelected, price, section FROM Seats WHERE showID=? AND isAvailable=1 ORDER BY section, rowNum, colNum ASC"
+        queryString = "SELECT rowNum, colNum, isSelected, price, section, isAvailable FROM Seats WHERE showID=? ORDER BY section, rowNum, colNum ASC"
     } else if (event.type == "price"){
-        queryString = "SELECT rowNum, colNum, isSelected, price, section FROM Seats WHERE showID=? AND isAvailable=1 ORDER BY price, rowNum, colNum ASC"
+        queryString = "SELECT rowNum, colNum, isSelected, price, section, isAvailable FROM Seats WHERE showID=? ORDER BY price, rowNum, colNum DESC"
     } else {
-        queryString = "SELECT rowNum, colNum, isSelected, price, section FROM Seats WHERE showID=? AND isAvailable=1 ORDER BY rowNum, colNum ASC"
+        queryString = "SELECT rowNum, colNum, isSelected, price, section, isAvailable FROM Seats WHERE showID=? ORDER BY rowNum, colNum ASC"
     }
     if (alreadyExists) {
         
@@ -66,9 +66,24 @@ exports.handler = async (event) => {
 
         allSeats = await listAvailableSeats(event.showID)
         
+         let listSeats = (showID) => {
+            return new Promise((resolve, reject) => {
+                pool.query("SELECT rowNum, colNum, isSelected, price, section, isAvailable FROM Seats WHERE showID=? ORDER BY rowNum, colNum ASC",
+                    [showID], (error, rows) => {
+                        if (error) {
+                            return reject(error);
+                        }
+                        return resolve(rows);
+                    })
+            })
+        }
+        
+        let allSeats2 =  await listSeats(event.showID)
+        
         response = {
             statusCode: 200,
-            shows: allSeats
+            shows: allSeats,
+            shows2: allSeats2
         };
     } else {
         // If the venue name already exists, return an error response

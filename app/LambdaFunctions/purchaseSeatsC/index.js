@@ -13,23 +13,25 @@ exports.handler = async (event) => {
     let errorMessage = "error";
 
     // Log the name from the event (for debugging purposes)
-    // console.log(event.name);
-
     let alreadyExists = undefined;
 
+    const currentDateTime = new Date().toISOString();
+
+    // Split the string into date and time
+    const datePart = currentDateTime.slice(0, 10); // YYYY-MM-DD
+    const timePart = currentDateTime.slice(11, 19); // HH:MM:SS
     // Validates if that showID already exists
     let showIDExists = (showID) => {
         return new Promise((resolve, reject) => {
             // SQL query to check if the showID exists
-            pool.query("SELECT * FROM Shows WHERE showID=?", [showID], (error, rows) => {
+            pool.query("SELECT * FROM Shows WHERE showID=? AND (showDate>? or (showDate=? AND showTime>?)) AND isActive=1", [showID, datePart, datePart, timePart], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }
-                // console.log(rows);
                 if ((rows) && (rows.length >= 1)) {
                     return resolve(true);
                 } else {
-                    errorMessage = "Show does not exist";
+                    errorMessage = "Show does not exist or show has already passed";
                     return resolve(false);
                 }
             });
@@ -40,16 +42,23 @@ exports.handler = async (event) => {
     let response = undefined;
 
     if (alreadyExists) {
+        let region = undefined
         let getSeatPrice = (showID, colNum, rowNum) => {
             return new Promise((resolve, reject) => {
                 // SQL query to get the seat price
-                pool.query("SELECT price FROM Seats WHERE showID=? AND rowNum=? AND colNum=? AND isSelected=1",
+                pool.query("SELECT price,section FROM Seats WHERE showID=? AND rowNum=? AND colNum=? AND isSelected=1",
                     [showID, rowNum, colNum], (error, rows) => {
                         if (error) {
                             return reject(error);
                         }
                         if ((rows) && (rows.length >= 1)) {
-                            // console.log(rows[0].price);
+                            if (rows[0].section == 0) {
+                                region = "left"
+                            } else if (rows[0].section == 1) {
+                                region = "center"
+                            } else {
+                                region = "right"
+                            }
                             return resolve(rows[0].price);
                         } else {
                             return resolve(0);
@@ -57,6 +66,7 @@ exports.handler = async (event) => {
                     });
             });
         };
+
 
         let updateSeat = (showID, colNum, rowNum) => {
             return new Promise((resolve, reject) => {
@@ -68,14 +78,14 @@ exports.handler = async (event) => {
                         }
                         if (rows.affectedRows > 0) {
                             return resolve(true);
-                        }else {
-                            console.log("hi")
+                        } else {
                             return resolve(false);
                         }
                     });
             });
         };
-        
+
+
         let updateSeatEnd = (showID, colNum, rowNum) => {
             return new Promise((resolve, reject) => {
                 // SQL query to update the seat availability
@@ -84,11 +94,12 @@ exports.handler = async (event) => {
                         if (error) {
                             return reject(error);
                         }
+
                         return resolve(true);
                     });
             });
         };
-        
+
         let updateShow = (showID) => {
             return new Promise((resolve, reject) => {
                 // SQL query to update the seat availability
@@ -101,8 +112,21 @@ exports.handler = async (event) => {
                     });
             });
         };
-        
-         let checkIfSoldOut = (showID) => {
+
+        let updateBlock = (showID, row, section) => {
+            return new Promise((resolve, reject) => {
+                // SQL query to update the seat availability
+                pool.query("UPDATE Blocks SET seatsAvailable = seatsAvailable - 1, seatsPurchased = seatsPurchased + 1 WHERE showID=? AND region=? AND rowStart <= ? AND rowEnd >= ?",
+                    [showID, section, row, row], (error, rows) => {
+                        if (error) {
+                            return reject(error);
+                        }
+                        return resolve(true);
+                    });
+            });
+        };
+
+        let checkIfSoldOut = (showID) => {
             return new Promise((resolve, reject) => {
                 // SQL query to update the seat availability
                 pool.query("SELECT availableSeatsCounter FROM Shows WHERE showID=? AND availableSeatsCounter=0",
@@ -110,14 +134,13 @@ exports.handler = async (event) => {
                         if (error) {
                             return reject(error);
                         }
-                        if (rows.length >= 1){
-                              pool.query("UPDATE Shows SET soldOut=1 WHERE showID=?",
+                        if (rows.length >= 1) {
+                            pool.query("UPDATE Shows SET soldOut=1 WHERE showID=?",
                                 [showID], (error, rows) => {
-                                    console.log("in")
                                     if (error) {
                                         return reject(error);
                                     }
-                                    if (rows.affectedRows >= 1){
+                                    if (rows.affectedRows >= 1) {
                                         return resolve(true);
                                     } else {
                                         return resolve(false);
@@ -129,8 +152,8 @@ exports.handler = async (event) => {
                     });
             });
         };
-        
-         let updateShowRevenue = (showID, totalPrice) => {
+
+        let updateShowRevenue = (showID, totalPrice) => {
             return new Promise((resolve, reject) => {
                 // SQL query to update the seat availability
                 pool.query("UPDATE Shows SET revenue = revenue + ? WHERE showID=?",
@@ -147,11 +170,12 @@ exports.handler = async (event) => {
         let seatString = ""
         // Loop through each seat in the event
         for (let i = 0; i < event.seats.length; i++) {
-            if (await updateSeat(event.showID, event.seats[i].colNum, event.seats[i].rowNum)){
+            if (await updateSeat(event.showID, event.seats[i].colNum, event.seats[i].rowNum)) {
                 totalPrice = totalPrice + await getSeatPrice(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
                 let tempSeat = String.fromCharCode(event.seats[i].rowNum + 'A'.charCodeAt(0))
                 seatString = seatString + (tempSeat + (event.seats[i].colNum + 1)) + ", "
                 await updateShow(event.showID)
+                await updateBlock(event.showID, event.seats[i].rowNum, region)
             }
             await updateSeatEnd(event.showID, event.seats[i].colNum, event.seats[i].rowNum);
         }

@@ -4,11 +4,13 @@ import { Box } from '@mui/material';
 import React from 'react';
 import '../App.css';
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
+import { createBlockVMCon } from './controller/CreateBlockVMCon.js';
+import { listBlocksVMCon } from './controller/ListBlocksVMCon.js';
 
 
 function createBlock()
 {
-
+  createBlockVMCon()
 }
 
 function deleteBlock()
@@ -18,7 +20,7 @@ function deleteBlock()
 
 function listBlocks()
 {
-
+  listBlocksVMCon()
 }
 
 var venueToken;
@@ -55,24 +57,25 @@ const EditBlocksVM = () => {
 
       For creating and listing blocks:
       <li type="none"></li>
-      <input id='venueName' value={showID} placeholder='showID' />
+      <input id='showID' value={showID} placeholder='showID' />
       <li type="none"></li>
       
       For creating blocks:
       <li type="none"></li>
       <input id='price' value={price} placeholder='price' />
       <li type="none"></li>
-      <input id='section' value={section} placeholder='section' />
+      <input id='section' value={section} placeholder='section (ex. left)' />
       <li type="none"></li>
-      <input id='startRow' value={startRow} placeholder='startRow' />
+      <input id='startRow' value={startRow} placeholder='startRow (ex. A)' />
       <li type="none"></li>
-      <input id='endRow' value={endRow} placeholder='endRow' />
+      <input id='endRow' value={endRow} placeholder='endRow (ex. B)' />
       <li type="none"></li>
 
       Result: <input id="result" readOnly style={{ width: '1200px' }}/>
       <li type="none"></li>
      
-      
+      <li type="none"></li>
+      <div id="blockList"></div>
 
     </div >
   );
