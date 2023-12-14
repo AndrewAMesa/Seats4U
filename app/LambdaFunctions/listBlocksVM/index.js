@@ -21,13 +21,11 @@ exports.handler = async (event) => {
                 if (error) {
                     return reject(error);
                 }
-                console.log(rows);
                 // If the token exists, return true; otherwise, set an error message and return false
                 if ((rows) && (rows.length >= 1)) {
                     return resolve(true);
                 } else {
                     errorMessage = "Token does not exist";
-                    console.log(errorMessage);
                     return resolve(false);
                 }
             });
@@ -56,7 +54,7 @@ exports.handler = async (event) => {
     // Check if the token and showID are valid
     const validToken = await tokenExists(event.venueToken);
     const validShowID = await showExists(event.showID);
-    console.log("Checking");
+
     let response = undefined;
 
     // If the token is valid and showID exists, get all blocks
