@@ -21,7 +21,7 @@ export function listBlocksVMCon() {
 
             // Loop through the blocks in the response and populate the table
             for (let i = 0; i < response.blocks.length; i++) {
-                table += `<tr><td>${response.blocks[i].blockID}</td><td>${response.blocks[i].showID}</td><td>${response.blocks[i].showName}</td><td>${response.blocks[i].price}</td><td>${response.blocks[i].region}</td><td>${response.blocks[i].rowStart}</td><td>${response.blocks[i].rowEnd}</td><td>${response.blocks[i].seatsAvailable}</td><td>${response.blocks[i].seatsPurchased}</td></tr>`;
+                table += `<tr><td>${response.blocks[i].blockID}</td><td>${response.blocks[i].showID}</td><td>${response.blocks[i].showName}</td><td>${response.blocks[i].price}</td><td>${response.blocks[i].region}</td><td>${String.fromCharCode(response.blocks[i].rowStart + 'A'.charCodeAt(0))}</td><td>${String.fromCharCode(response.blocks[i].rowEnd + 'A'.charCodeAt(0))}</td><td>${response.blocks[i].seatsAvailable}</td><td>${response.blocks[i].seatsPurchased}</td></tr>`;
             }
 
             // Set the HTML content of the element with ID 'blockList' to the generated table
