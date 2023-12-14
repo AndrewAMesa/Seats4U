@@ -15,7 +15,10 @@ function createBlock()
 
 function deleteBlock()
 {
+  
 
+    
+  
 }
 
 function listBlocks()
@@ -39,18 +42,25 @@ const EditBlocksVM = () => {
       <VenueManagerNavBarNavBar />
 
 
-      <button className='createBlock' data-testid="createBlock" onClick={(e) => createBlock()} >Create Block</button>
+      <p class="green-text"></p>
+
+
+      <button className='button' data-testid="createBlock" onClick={(e) => createBlock()} style={{ backgroundColor: 'mediumspringgreen', color: 'black' }} >Create Block</button>
       {" "}
-      <button className='deleteBlock' data-testid="deleteBlock" onClick={(e) => deleteBlock()} >Delete Block</button>
+      <button className='button' data-testid="deleteBlock" onClick={(e) => deleteBlock()} >Delete Block</button>
       {" "}
-      <button className='listBlocks' data-testid="listBlocks" onClick={(e) => listBlocks()} >List Blocks</button>
+      <button className='button' data-testid="listBlocks" onClick={(e) => listBlocks()} >List Blocks</button>
       <li type="none"></li>
-      Venue Authorization:
+
+      
+      Venue Authorization: 
       <li type="none"></li>
       <input id='token' value={venueToken} placeholder='venueToken' />
       <li type="none"></li>
 
+  
       For deleting blocks:
+      
       <li type="none"></li>
       <input id='blockID' value={blockID} placeholder='blockID' />
       <li type="none"></li>
@@ -71,7 +81,7 @@ const EditBlocksVM = () => {
       <input id='endRow' value={endRow} placeholder='endRow (ex. B)' />
       <li type="none"></li>
 
-      Result: <input id="result" readOnly style={{ width: '1200px' }}/>
+      Result: <input id="result" readOnly style={{ width: '600px' }}/>
       <li type="none"></li>
      
       <li type="none"></li>

@@ -3,7 +3,7 @@ import React from 'react';
 
 const AdminNavBar = () => {
    return (
-      <div className="AdminNavBar" >
+      <div className="NavBarToo" >
          <li type="none">
             <Link to="/VenuesA">Venues</Link>
             {" | "}

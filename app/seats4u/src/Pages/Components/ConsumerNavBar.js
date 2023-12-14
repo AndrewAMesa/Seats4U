@@ -3,7 +3,7 @@ import React from 'react';
 
 const ConsumerNavBar = () => {
    return (
-      <div className="ConsumerNavBar" >
+      <div className="NavBarToo" >
          <li type="none">
             {/* <Link to="/VenuesC">Venues</Link>
             {" | "} */}

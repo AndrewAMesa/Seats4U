@@ -19,22 +19,30 @@ const ShowsVM = () => {
   return (
     <div className="ShowsVM">
       <VenueManagerNavBarNavBar />
-      <button className='listShowsVM' data-testid="listShowsVM" onClick={(e) => listShowsVM()} >List Shows</button>
+      <p></p>
+      <button className='button' data-testid="listShowsVM" onClick={(e) => listShowsVM()} >List Shows</button>
       {" "}
-      <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
+      <button className='button' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "}
-      <button className='createShow' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
-      {" "} <button className='activateShow' data-testid="activateShow" onClick={(e) => activateShow()} >Activate Show</button>
+      <button className='button' data-testid="createShow" onClick={(e) => createShow()} >Create Show</button>
+      {" "} <button className='button' data-testid="activateShow" onClick={(e) => activateShow()} >Activate Show</button>
       {" "}
-      <button className='generateShowReportVM' data-testid="generateShowReportVM" onClick={(e) => generateShowReportVM()} >Generate Show Report</button>
+      <button className='button' data-testid="generateShowReportVM" onClick={(e) => generateShowReportVM()} >Generate Show Report</button>
       {" | "} <input id='search' value={search} placeholder='Search ShowsVM' />
 
+
+      <li type="none"></li>
+      Venue Authorization:
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
       <li type="none"></li>
+
+      For Activating or Deleting a Show:
+      <li type="none"></li>
       <input id='showID' value={showID} placeholder='Show ID' />
       <li type="none"></li>
-      <input id='venueName' value={venueName} placeholder='venue name' />
+
+      For Creating a Show:
       <li type="none"></li>
       <input id='showName' value={showName} placeholder='show name' />
       <li type="none"></li>
@@ -44,7 +52,9 @@ const ShowsVM = () => {
       <li type="none"></li>
       <input id='defaultPrice' value={defaultPrice} placeholder='default price' />
       <li type="none"></li>
-      result: <input id="result" readOnly style={{ width: '800px' }} />
+
+      Result: <input id="result" readOnly style={{ width: '600px' }} />
+      <p></p>
       <li type="none"></li>
       <div id="showReportVM"></div>
 

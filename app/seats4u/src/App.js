@@ -42,8 +42,18 @@ function App() {
         sx={{
           position: 'absolute',
           width: '100%',
-          height: 35,
-          bgcolor: 'white'
+          height: 32,
+          bgcolor: 'mediumspringgreen'
+        }}
+      />
+
+      <Box
+        sx={{
+          top: 32,
+          position: 'absolute',
+          width: '100%',
+          height: 32,
+          bgcolor: 'salmon  '
         }}
       />
 

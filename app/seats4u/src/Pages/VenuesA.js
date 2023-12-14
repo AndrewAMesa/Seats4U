@@ -16,24 +16,15 @@ const VenuesA = () => {
   return (
     <div className="VenuesA">
       <AdminNavBar />
-      <button className='listVenuesA' data-testid="listVenuesA" onClick={(e) => listVenuesA()} >List Venues</button>
+      <button className='button' data-testid="listVenuesA" onClick={(e) => listVenuesA()} >List Venues</button>
 
+      <li type="none"></li>
+      Enter SkyGod Token:
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
       <li type="none"></li>
-      <input id='venueName' value={venueName} placeholder='venue name' />
-      <li type="none"></li>
-      <input id='location' value={location} placeholder='location' />
-      <li type="none"></li>
-      <input id='numRows' value={numRows} placeholder='#rows' />
-      <li type="none"></li>
-      <input id='leftCols' value={leftCols} placeholder='#left columns' />
-      <li type="none"></li>
-      <input id='centerCols' value={centerCols} placeholder='#center columns' />
-      <li type="none"></li>
-      <input id='rightCols' value={rightCols} placeholder='#right columns' />
-      <li type="none"></li>
-      result: <input id="result" readOnly style={{ width: '1000px' }} />
+
+      Result: <input id="result" readOnly style={{ width: '1000px' }} />
       <li type="none"></li>
       <div id="venuesList"></div>
     </div >

@@ -18,26 +18,18 @@ const ShowsA = () => {
   return (
     <div className="ShowsA">
       <AdminNavBar />
-      <button className='deleteShow' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
+      <button className='button' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "}
-      <button className='generateShowReportA' data-testid="generateShowReportA" onClick={(e) => generateShowReportA()} >Generate Show Report</button>
-      {" | "} <input id='search' value={search} placeholder='Search Shows' />
+      <button className='button' data-testid="generateShowReportA" onClick={(e) => generateShowReportA()} >Generate Show Report</button>
+      {/* {" | "} <input id='search' value={search} placeholder='Search Shows' /> */}
 
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
       <li type="none"></li>
-      <input id='venueName' value={venueName} placeholder='venue name' />
-      <li type="none"></li>
+
       <input id='showID' value={showID} placeholder='show ID' />
       <li type="none"></li>
-      <input id='showName' value={showName} placeholder='show name' />
-      <li type="none"></li>
-      <input id='showDate' value={showDate} placeholder='show date (yyyy-mm-dd)' />
-      <li type="none"></li>
-      <input id='showTime' value={showTime} placeholder='show time (hh:mm:ss)' />
-      <li type="none"></li>
-      <input id='defaultPrice' value={defaultPrice} placeholder='default price' />
-      <li type="none"></li>
+
       result: <input id="result" readOnly style={{ width: '800px' }}/>
       <li type="none"></li>
       <div id="showReportA"></div>

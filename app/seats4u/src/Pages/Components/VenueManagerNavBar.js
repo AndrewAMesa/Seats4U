@@ -3,7 +3,7 @@ import React from 'react';
 
 const VenueManagerNavBar = () => {
    return (
-      <div className="VenueManagerNavBar" >
+      <div className="NavBarToo" >
          <li type="none">
             <Link to="/VenuesVM">Venues</Link>
             {" | "}

@@ -18,16 +18,21 @@ const VenuesVM = () => {
   return (
     <div className="VenuesVM">
       <VenueManagerNavBarNavBar />
-      <button className='createVenue' data-testid="createVenue" onClick={(e) => createVenue()} >Create Venue</button>
-      {" "}
-      <button className='deleteVenue' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>
-      {" "}
-      <button className='showVenueVM' data-testid="showVenueVM" onClick={(e) => showVenueVM()} >Show Venue</button>
 
-      <button className='showVenueVM2' data-testid="showVenueVM2" onClick={(e) => showVenueVM()} >Show Venue2</button>
+      <p></p>
+      <button className='button' data-testid="createVenue" onClick={(e) => createVenue()} >Create Venue</button>
+      {" "}
+      <button className='button' data-testid="deleteVenue" onClick={(e) => deleteVenue()} >Delete Venue</button>
+      {" "}
+      <button className='button' data-testid="showVenueVM" onClick={(e) => showVenueVM()} >Show Venue</button>
 
+     
+      <li type="none"></li>
+      Venue Authorization :
       <li type="none"></li>
       <input id='token' value={token} placeholder='token' />
+      <li type="none"></li>
+      For Creating a Venue:
       <li type="none"></li>
       <input id='venueName' value={venueName} placeholder='venue name' />
       <li type="none"></li>
@@ -41,13 +46,13 @@ const VenuesVM = () => {
       <li type="none"></li>
       <input id='rightCols' value={rightCols} placeholder='#right columns' />
       <li type="none"></li>
-      result: <input id="result" readOnly style={{ width: '1000px' }} />
+      Result: <input id="result" readOnly style={{ width: '600px' }} />
       <li type="none"></li>
       <br></br>
-      Venue Layout:
+      {/* Venue Layout:
       <li type="none"></li>
       <input id="venueLayout" readOnly style={{ width: '1000px' }} />
-      <li type="none"></li>
+      <li type="none"></li> */}
 
       <div id="result"></div>
 
