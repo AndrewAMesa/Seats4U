@@ -39,11 +39,11 @@ exports.handler = async (event) => {
     let queryString = undefined;
     // Determine the sorting order based on event type
     if (event.type == "section") {
-        queryString = "SELECT rowNum, colNum, isSelected, price, section, isAvailable FROM Seats WHERE showID=? ORDER BY section, rowNum, colNum ASC";
+        queryString = "SELECT rowNum, colNum, isSelected, price, section, isAvailable FROM Seats WHERE showID=? ORDER BY section ASC";
     } else if (event.type == "price") {
-        queryString = "SELECT rowNum, colNum, isSelected, price, section, isAvailable FROM Seats WHERE showID=? ORDER BY price, rowNum, colNum DESC";
+        queryString = "SELECT rowNum, colNum, isSelected, price, section, isAvailable FROM Seats WHERE showID=? ORDER BY price DESC";
     } else {
-        queryString = "SELECT rowNum, colNum, isSelected, price, section, isAvailable FROM Seats WHERE showID=? ORDER BY rowNum, colNum ASC";
+        queryString = "SELECT rowNum, colNum, isSelected, price, section, isAvailable FROM Seats WHERE showID=? ORDER BY rowNum ASC";
     }
 
     if (alreadyExists) {
