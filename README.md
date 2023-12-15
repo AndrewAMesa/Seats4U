@@ -6,6 +6,7 @@ Software Engineering Project B23
 2) When creating a show the date and time must be in SQL format
 3) When creating the time for a show it must be in UTC time
 4) When creating a show the default price must be provided
+5) When deleting a block you must enter in both the blockID and showID
 
 
 
