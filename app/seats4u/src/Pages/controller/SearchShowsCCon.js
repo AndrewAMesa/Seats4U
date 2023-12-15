@@ -46,7 +46,7 @@ export function searchShowsCCon(type) {
                 // Create a formatted date string
                 const dateString = `${month}-${day}-${year}`;
 
-                if (type = 0 && response.shows[i].soldOut == 1) {
+                if (response.shows[i].soldOut == 1) {
                 list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + dateString + " | <mark>sold out</mark> | " + "showID: " + response.shows[i].showID + "  | venue:" + response.shows[i].venueName + "<br>";
                 }
                 else {
