@@ -6,6 +6,8 @@ const HomeC = () => {
   return (
     <div className="HomeC">
       <ConsumerNavBar />
+      <p></p>
+
       Welcome to Consumer!
       <li type="none"></li>
       <img src={basicBunjil} alt="bunjil"  className="App-bunjil" id="bunjil"  />

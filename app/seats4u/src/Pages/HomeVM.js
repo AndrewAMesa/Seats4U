@@ -6,6 +6,8 @@ const HomeVM = () => {
   return (
     <div className="HomeVM">
       <VenueManagerNavBarNavBar />
+      <p></p>
+
       Welcome, Venue Manager!
       <li type="none"></li>
       <img src={mediumBunjil} alt="bunjil"  className="App-bunjil" id="bunjil"  />

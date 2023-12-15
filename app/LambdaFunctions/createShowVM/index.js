@@ -120,7 +120,7 @@ exports.handler = async (event) => {
         // Loop to add seats
         let section = 0;
         for (let i = 0; i < columnCount; i++) {
-            if (i + 1 > size[0].colNum && i < size[0].colNum + 1) {
+            if (i + 1 > size[0].colNum + 1 && i < size[0].colNum + 2) {
                 section++;
             } else if (i + 1 > size[1].colNum + size[0].colNum && i < size[0].colNum + size[1].colNum + 1) {
                 section++;

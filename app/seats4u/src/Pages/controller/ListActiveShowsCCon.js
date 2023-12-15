@@ -37,9 +37,9 @@ export function listActiveShowsCCon(requestRedraw) {
 
             const showInfo = `${response.shows[i].showName}: ShowID: ${response.shows[i].showID}, isActive: ${isActive ? "active" : "inactive"}, isSoldOut: ${soldOut ? "yes" : "no"}, showDate: ${dateString}, showTime: ${timeString}, defaultPrice: ${response.shows[i].defaultPrice}, availableSeatsCounter: ${response.shows[i].availableSeatsCounter}`;
             if (response.shows[i].soldOut == 1) {
-                list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + dateString + " | <mark>sold out</mark> | " + "showID: " + response.shows[i].showID + "<br>";
+                list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + dateString + " | <mark>sold out</mark> | " + "showID: " + response.shows[i].showID + " | venue:  " + response.shows[i].venueName + "<br>";
                 } else {
-                list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + dateString + " | <mark>available</mark> | " + "showID: " + response.shows[i].showID + "<br>";
+                list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + dateString + " | <mark>available</mark> | " + "showID: " + response.shows[i].showID + " | venue:  " + response.shows[i].venueName +  "<br>";
             }
         }
         //document.getElementById("activeShows").innerHTML = ""

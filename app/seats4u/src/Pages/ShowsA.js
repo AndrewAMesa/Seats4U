@@ -18,6 +18,8 @@ const ShowsA = () => {
   return (
     <div className="ShowsA">
       <AdminNavBar />
+      <p></p>
+
       <button className='button' data-testid="deleteShow" onClick={(e) => deleteShow()} >Delete Show</button>
       {" "}
       <button className='button' data-testid="generateShowReportA" onClick={(e) => generateShowReportA()} >Generate Show Report</button>
