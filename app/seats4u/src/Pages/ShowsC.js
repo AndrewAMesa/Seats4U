@@ -19,6 +19,7 @@ const ShowsC = () => {
   return (
     <div className="ShowsC">
       <ConsumerNavBar />
+      <p></p>
       <input id='search' value={search} style={{ width: '250px' }} placeholder='Enter show or venue name here' />
       {" "}
       <button className='button' data-testid="listShowsByVenue" style={{ width: '220px' }} onClick={(e) => listShowsByVenue(0)} >Search Shows by Venue</button>

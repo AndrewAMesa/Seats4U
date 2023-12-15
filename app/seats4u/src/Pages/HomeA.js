@@ -6,6 +6,8 @@ const HomeA = () => {
   return (
     <div className="HomeA">
       <AdminNavBar />
+      <p></p>
+
       Welcome, Admin!
       <li type="none"></li>
       <img src={bunjil} alt="bunjil"  className="App-bunjil" id="bunjil"  />
