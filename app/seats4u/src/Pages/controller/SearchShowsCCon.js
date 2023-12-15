@@ -39,14 +39,15 @@ export function searchShowsCCon(type) {
                 const dateObject = new Date(mysqlDate);
 
                 // Extract day, month, and year
-                const day = dateObject.getDate() + 1;
-                const month = dateObject.getMonth() + 1; // Months are zero-indexed, so we add 1
-                const year = dateObject.getFullYear();
+               
+                const day = (dateObject.getDate() === 31 && dateObject.getMonth() === 11) ?   1 : dateObject.getDate() +1;
+                const month = (dateObject.getDate() === 31 && dateObject.getMonth() === 11) ? 1 : dateObject.getMonth() + 1;
+                const year = (dateObject.getDate() === 31 && dateObject.getMonth() === 11) ? dateObject.getFullYear() +1 : dateObject.getFullYear();
 
                 // Create a formatted date string
                 const dateString = `${month}-${day}-${year}`;
 
-                if (type = 0 && response.shows[i].soldOut == 1) {
+                if (response.shows[i].soldOut == 1) {
                 list = list + "show name: " + response.shows[i].showName + " | time: " + response.shows[i].showTime + " | date:  " + dateString + " | <mark>sold out</mark> | " + "showID: " + response.shows[i].showID + "  | venue:" + response.shows[i].venueName + "<br>";
                 }
                 else {
