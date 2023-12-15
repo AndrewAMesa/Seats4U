@@ -4,6 +4,7 @@ import { deleteShowVMCon } from './controller/DeleteShowVMCon';
 import { generateShowsReportVMCon } from './controller/GenerateShowsReportVMCon.js';
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
 import { activateShowCon } from './controller/ActivateShowVMCon.js';
+import { listShowsVMCon } from './controller/listShowsVM.js';
 
 var token;
 var search;
@@ -68,7 +69,7 @@ function createShow() {
     document.getElementById('showTime').value != "" && document.getElementById('defaultPrice').value != "") {
 
     console.log("token: " + document.getElementById('token').value);
-    console.log("venue name: " + document.getElementById('venueName').value);
+    //console.log("venue name: " + document.getElementById('venueName').value);
     console.log("show name: " + document.getElementById('showName').value);
     console.log("show date: " + document.getElementById('showDate').value);
     console.log("show time: " + document.getElementById('showTime').value);
@@ -93,6 +94,7 @@ function generateShowReportVM() {
 }
 
 function listShowsVM() {
+  listShowsVMCon();
 }
 
 function deleteShow() {

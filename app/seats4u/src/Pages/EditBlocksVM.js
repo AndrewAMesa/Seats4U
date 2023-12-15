@@ -6,6 +6,7 @@ import '../App.css';
 import VenueManagerNavBarNavBar from '../Pages/Components/VenueManagerNavBar.js';
 import { createBlockVMCon } from './controller/CreateBlockVMCon.js';
 import { listBlocksVMCon } from './controller/ListBlocksVMCon.js';
+import { deleteBlockVMCon } from './controller/deleteBlock.js';
 
 
 function createBlock()
@@ -17,10 +18,9 @@ function createBlock()
 
 function deleteBlock()
 {
-  
-
-    
-  
+  if (document.getElementById('token').value != "" && document.getElementById('showID').value != ""){
+    deleteBlockVMCon();
+  }
 }
 
 function listBlocks()
