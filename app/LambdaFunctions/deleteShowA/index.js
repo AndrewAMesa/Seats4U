@@ -14,6 +14,7 @@ exports.handler = async (event) => {
     let errorMessage = "auuuuuuuuuuuuuughghghgh";
 
     console.log(event.adminToken)
+    console.log(event.showID)
 
     // validates if that token already exists
     let tokenExists = (token) => {

@@ -32,17 +32,17 @@ exports.handler = async (event) => {
         });
     };
 
-    const validToken = await tokenExists(event.venueToken);
+    const validToken = await tokenExists(event.token);
     console.log("checking")
     
     // If the token is valid delete venue from database
     if (validToken) 
     {
-        let ListVenues = () => 
+        let generateShowsReportVM = (token) => 
         {
             return new Promise((resolve, reject) => 
             {
-                pool.query("SELECT Shows.*, Venues.location FROM Shows LEFT JOIN Venues ON Shows.venueID = Venues.venueID Where venueToken=?", [token], (error, rows) => 
+                pool.query("SELECT Shows.*, Venues.location FROM Shows JOIN Venues ON Shows.venueName = Venues.venueName WHERE venueToken=?", [token], (error, rows) => 
                 {
                     if (error) { return reject(error); }
                     return resolve(rows);
@@ -50,7 +50,7 @@ exports.handler = async (event) => {
             })
         }
         
-        const allVenues = await ListVenues()
+        const allVenues = await generateShowsReportVM(event.token)
         
         const response = {
             statusCode: 200,

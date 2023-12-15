@@ -30,7 +30,7 @@ exports.handler = async (event) => {
         
         const response = {
             statusCode: 200,
-            activeShows: allActiveShows
+            shows: allActiveShows
         }
          pool.end()
          return response;

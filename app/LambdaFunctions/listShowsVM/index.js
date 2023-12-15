@@ -16,7 +16,7 @@ exports.handler = async (event) => {
     // validates if that token already exists
     let tokenExists = (token) => {
         return new Promise((resolve, reject) => {
-            pool.query("SELECT * FROM Admins WHERE adminToken=?", [token], (error, rows) => {
+            pool.query("SELECT * FROM Venues WHERE venueToken=?", [token], (error, rows) => {
                 if (error) {
                     return reject(error);
                 }
@@ -32,17 +32,17 @@ exports.handler = async (event) => {
         });
     };
 
-    const validToken = await tokenExists(event.adminToken);
+    const validToken = await tokenExists(event.token);
     console.log("checking")
     
     // If the token is valid delete venue from database
     if (validToken) 
     {
-        let generateShowsReportA = () => 
+        let listShowsVM = (token) => 
         {
             return new Promise((resolve, reject) => 
             {
-                pool.query("SELECT Shows.*, Venues.location FROM Shows JOIN Venues ON Venues.venueName = Shows.venueName", [], (error, rows) => 
+                pool.query("SELECT Shows.* FROM Shows JOIN Venues ON Shows.venueName = Venues.venueName WHERE venueToken=?", [token], (error, rows) => 
                 {
                     if (error) { return reject(error); }
                     return resolve(rows);
@@ -50,7 +50,7 @@ exports.handler = async (event) => {
             })
         }
         
-        const allVenues = await generateShowsReportA()
+        const allVenues = await listShowsVM(event.token)
         
         const response = {
             statusCode: 200,
