@@ -7,6 +7,7 @@ Software Engineering Project B23
 3) When creating the time for a show it must be in UTC time
 4) When creating a show the default price must be provided
 5) When deleting a block you must enter in both the blockID and showID
+7) Bunjil is the Admin token
 
 
 
