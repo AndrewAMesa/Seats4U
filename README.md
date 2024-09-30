@@ -1,4 +1,5 @@
-# Bunjil
+# Seats4U
+
 Software Engineering Project B23
 
 **Special requirments**
